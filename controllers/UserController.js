@@ -1,8 +1,23 @@
+let user = [
+    {
+        "id": 1,
+        "Nombre": "Ezequiel",
+        "Apellido": "Cherone",
+        "Edad" : 34,
+        "Estado" : true
+    },
+    {
+        "id": 2,
+        "Nombre": "Javier",
+        "Apellido": "Cherone",
+        "Edad" : 39,
+        "Estado" : true 
+    }
+    
+]
+
 module.exports = {
     get : (req, res) => {
-        res.send("User: Ezequiel Chero")
-    },
-    post : (req, res) => {
-        res.send("User: Daniel Chero")
+        res.json(user)
     }
 }
