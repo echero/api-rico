@@ -1,8 +1,8 @@
 # Grupo:   2°  /   BE-A
 
-* ####  Elyelin Carrasquero       (https://github.com/elyelin)
-* ####  Fernando Unias
-* ####  Ezequiel Cherone
+* ####  [Elyelin Carrasquero](https://github.com/elyelin)
+* ####  [Fernando Unias](https://github.com/fernandounias)
+* ####  [Ezequiel Cherone](https://github.com/echero)
  
 ---
 
