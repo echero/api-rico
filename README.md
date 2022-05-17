@@ -8,7 +8,12 @@
  *Creación un entorno de recomendaciones de restaurantes que sea inclusivo y apto tanto para usuarios, exploradores, conocedores, así como también para los dueños de restaurantes o pequeños emprendimientos de comida extranjera que puedan recibir más visibilidad.*
  
 #### Descripción funcionalidades
-* *
+* 
+- Registro: Los usuarios pueden registrarse para tener acceso a la informacion proporcionada por nuestra API
+- Usuarios: Pueden modificar sus datos personales, asi como tambien guardar y eliminar favoritos de su catálogo
+- Restaurantes: Pueden modificar sus datos, asi como tambien guardar, modificar y eliminar su menu
+- Busqueda: Los usuarios registrados pueden buscar restaurants
+*
 
 #### Reglas de negocio
 1. Registrar y guardar los datos de los usuarios  (Autenticacion)
@@ -17,7 +22,7 @@
 4. Los usuarios pueden guardar un restaurant a sus favoritos
 5. Los restaurant van a poder guardar la carta de comidas y bebidas
 6. Los usuarios pueden buscar restaurant 
-//cambiar el nombre restaurant
+
 
 #### Declaración de rutas
 - Home: /api
@@ -54,7 +59,3 @@
 - RestaurantMenuTest
 - FavoriteTest
 - SearchTest
-
-
-
-archivo de texto donde se incluya una posible planificación de la implementación del proyecto; no debe tener ningún formato en particular, pero sí incluir una idea aproximada de posibles tareas a realizar hasta finalizar la cursada, por integrante; Requerirá un poco de debate/discusión.
