@@ -1,4 +1,4 @@
-# 2 BE-A
+# Grupo: 2° BE-A
 
 #### Elyelin Carrasquero
 #### Fernando Unias
