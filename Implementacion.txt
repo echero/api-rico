@@ -1,0 +1,34 @@
+archivo de texto donde se incluya una posible planificación de la implementación del proyecto;
+
+Planificación de la implementación del proyecto:
+
+
+
+
+
+
+# Tareas pendientes:
+- Controller User             (Chero)
+- Controller Restaurant       (Chero)
+- Controller Register         (Elyelin)
+- Controller RestaurantMenu   (Fernando)
+- Controller Favorite         (Fernando)
+- Controller Search           (Elyelin)
+
+# Tests
+- RegisterTest              (Elyelin)         
+- UserTest                  (Chero)
+- RestaurantTest            (Chero)
+- RestaurantMenuTest        (Fernando)
+- FavoriteTest              (Fernando)
+- SearchTest                (Elyelin)
+
+# Rutas
+- Register                  (Elyelin)
+- User                      (Chero)
+- Restaurant                (Chero)
+- Restaurant menu           (Fernando)
+- Favorite                  (Fernando)
+- Search                    (Elyelin)
+
+# Bugs
