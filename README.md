@@ -1,8 +1,8 @@
 # Grupo:   2°  /   BE-A
 
-#### * Elyelin Carrasquero
-#### * Fernando Unias
-#### * Ezequiel Cherone
+* ####  Elyelin Carrasquero
+* ####  Fernando Unias
+* ####  Ezequiel Cherone
  
 --
 
