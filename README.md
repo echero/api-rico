@@ -4,7 +4,7 @@
 * ####  Fernando Unias
 * ####  Ezequiel Cherone
  
---
+---
 
 #### Descripción del proyecto
  *Creación un entorno de recomendaciones de restaurantes que sea inclusivo y apto tanto para usuarios, exploradores, conocedores, así como también para los dueños de restaurantes o pequeños emprendimientos de comida extranjera que puedan recibir más visibilidad.*
