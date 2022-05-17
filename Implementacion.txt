@@ -1,0 +1,36 @@
+archivo de texto donde se incluya una posible planificación de la implementación del proyecto;
+
+Planificación de la implementación del proyecto:
+*
+Es un sistema de busqueda para darle visibilidad a pequeños emprendimientos que a través de redes sociales 
+no han alcanzado la visibilidad que su producto amerita.
+  Puede ser usado para todo tipo de comercios, sus cimientos se encuentran en ayudar a pequenios emprendimientos a mostrar 
+  los productos que ofrecen al mundo y asi poder conectar con personas que quieran o necesiten los productos ofrecidos
+*
+
+
+# Tareas pendientes:
+- Controller User             (Chero)
+- Controller Restaurant       (Chero)
+- Controller Register         (Elyelin)
+- Controller RestaurantMenu   (Fernando)
+- Controller Favorite         (Fernando)
+- Controller Search           (Elyelin)
+
+# Tests
+- RegisterTest              (Elyelin)         
+- UserTest                  (Chero)
+- RestaurantTest            (Chero)
+- RestaurantMenuTest        (Fernando)
+- FavoriteTest              (Fernando)
+- SearchTest                (Elyelin)
+
+# Rutas
+- Register                  (Elyelin)
+- User                      (Chero)
+- Restaurant                (Chero)
+- Restaurant menu           (Fernando)
+- Favorite                  (Fernando)
+- Search                    (Elyelin)
+
+# Bugs
