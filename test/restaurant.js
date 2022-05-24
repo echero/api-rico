@@ -1,19 +1,41 @@
 const { expect } = require("chai")
-const Restaurant = require("../index")
+const { describe } = require("mocha")
+const axios = require("axios")
 
-describe('Restaurant', () => {
-    describe('#get', () =>{
-        it('llamada al servicio restaurant', async () => {
+describe("API RICO", () => {
+    
+    describe("GET /restaurant", () => {
+        it("Trae todos los restaurant del controlador", async () => {
+            const response = await axios.get('http://localhost:3000/restaurant')
 
-            const response = await Restaurant.get("http://127.0.0.1:3000/restaurant")
-
-            expect(response.status).to.equal(200)
+            expect(response.data).to.eql([{ id: 1, conten: "Restaurant Rosa Negra",
+            Direccion: "Dardor Rocha 1500", Estado : true}, { id: 2, conten: "Restaurant La Bisteca",
+            Direccion: "Dardor Rocha 1000",Estado : true}])
         })
+    })
 
-        it('devuelve un texto', () => {
-            Restaurant.get().then(response => {
-                expect(response.statusText).to.equal('OK')
-            })
+
+    describe("GET /restaurant/:id", () => {
+        it("Trae un restaurant especifico", () => {
+
+        })
+    })
+
+    describe("POST /restaurant", () => {
+        it("Crea un restaurant en la lista de restaurant", () => {
+
+        })
+    })
+
+    describe("DELETE / restaurant", () => {
+        it("Borra un restaurant de la lista de restaurantes", () => {
+
+        })
+    }) 
+
+    describe("PUT /restaurant", () => {
+        it("Modifica un restaurant de la lista de restaurant", () => {
+
         })
     })
 })

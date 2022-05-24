@@ -2,18 +2,21 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-const axios = require('axios');
-
-module.exports = {
-    get: () =>  {
-        return axios.get('http://127.0.0.1:3000/user');
-    }
-};
-
+// const axios = require('axios');
 const userRoute = require("./routes/User");
+const restaurantRoute = require("./routes/Restaurant");
+
+// module.exports = {
+//     get: () =>  {
+//         return axios.get('http://127.0.0.1:3000/user');
+//     }
+
+// };
+
+
 app.use("/user", userRoute);
 
-const restaurantRoute = require("./routes/Restaurant");
+
 app.use("/restaurant", restaurantRoute)
 app.use("/restaurant/:id", restaurantRoute)
 
