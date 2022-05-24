@@ -16,14 +16,17 @@ describe("API RICO", () => {
 
 
     describe("GET /restaurant/:id", () => {
-        it("Trae un restaurant especifico", () => {
+        it("Trae un restaurant especifico", async () => {
+            const response = await axios.get('http://localhost:3000/restaurant/1')
 
+            expect(response.data).to.eql({ id: 1, conten: "Restaurant Rosa Negra",
+            Direccion: "Dardor Rocha 1500", Estado : true})
         })
     })
 
     describe("POST /restaurant", () => {
         it("Crea un restaurant en la lista de restaurant", () => {
-
+            
         })
     })
 

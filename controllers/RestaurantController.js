@@ -27,5 +27,5 @@ module.exports = {
         else{
             res.status(404).end()
         }
-    }
+    } 
 }
