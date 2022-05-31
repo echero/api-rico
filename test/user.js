@@ -1,19 +1,54 @@
-// const { expect } = require("chai")
-// const Usuarios = require("../index")
+const chai = require("chai")
+const { describe } = require("mocha")
+const chaiHttp = require('chai-http')
+const app = require('../app')
+const { expect } = require("chai")
 
-// describe('Usuarios', () => {
-//     describe('#get', () =>{
-//         it('llamada al servicio user', async () => {
+chai.use(chaiHttp)
 
-//             const response = await Usuarios.get("http://127.0.0.1:3000/user")
+describe("API RICO", () => {
+    
+    describe("GET /restaurant", () => {
+        it("Trae todos los restaurant del controlador", async () => {
+            // const response = await axios.get('http://localhost:3000/user')
 
-//             expect(response.status).to.equal(200)
-//         })
+            chai.request(app).get('/user').end((_, res) =>{
+                expect(res).to.have.status(200)
+                expect(response.data).to.eql([{ id: 1, conten: "Restaurant Rosa Negra",
+                Direccion: "Dardor Rocha 1500", Estado : true}, { id: 2, conten: "Restaurant La Bisteca",
+                Direccion: "Dardor Rocha 1000",Estado : true}])
+            })
+        })
+    })
 
-//         it('devuelve un texto', () => {
-//             Usuarios.get().then(response => {
-//                 expect(response.statusText).to.equal('OK')
-//             })
-//         })
-//     })
-// })
+
+    describe("GET /restaurant/:id", () => {
+        it("Trae un restaurant especifico", async () => {
+            const response = await axios.get('http://localhost:3000/user/1')
+
+            expect(response.data).to.eql({ id: 1, conten: "Restaurant Rosa Negra",
+            Direccion: "Dardor Rocha 1500", Estado : true})
+        })
+    })
+
+    describe("POST /restaurant", () => {
+        describe("Cuando el Restaurant ha crear esta en el mismo nivel que otro", () =>{
+            it("No es posible agregar ese Restaurant")
+        })
+        it("Crea un restaurant en la lista de restaurant", () => {
+            
+        })
+    })
+
+    describe("DELETE / restaurant", () => {
+        it("Borra un restaurant de la lista de restaurantes", () => {
+
+        })
+    }) 
+
+    describe("PUT /restaurant", () => {
+        it("Modifica un restaurant de la lista de restaurant", () => {
+
+        })
+    })
+})
