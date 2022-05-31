@@ -7,7 +7,6 @@ const restaurantRoute = require("./routes/Restaurant");
 
 app.use("/user", userRoute);
 
-
 app.use("/restaurant", restaurantRoute)
 // app.use("/restaurant/:id", restaurantRoute)
 

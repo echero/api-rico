@@ -1,4 +1,4 @@
-let user = [
+let users = [
     {
         "id": 1,
         "Nombre": "Ezequiel",
@@ -18,6 +18,16 @@ let user = [
 
 module.exports = {
     get : (req, res) => {
-        res.json(user)
-    }
+        res.json(users)
+    },
+    id : (req, res) => {
+        const id = Number(req.params.id)
+        const user = users.find(user => user.id === id)
+        if(user){
+            res.json(user)
+        }
+        else{
+            res.status(404).end()
+        }
+    } 
 }
