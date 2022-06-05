@@ -31,7 +31,6 @@
 
 #### Declaración de rutas
 - Home: /api
-- Registro: /api/register  .........................  (Post)
 - Usuario: /api/user/id  .........................  (Get)
     - /api/user/id/delete  .........................  (Delete)
     - /api/user/id/put  .........................  (Put)
@@ -51,7 +50,6 @@
 ---
 
 #### Controladores 
-- Register
 - User
 - Restaurant
 - Restaurant menu
@@ -61,7 +59,6 @@
 ---
 
 #### Test
-- RegisterTest
 - UserTest
 - RestaurantTest
 - RestaurantMenuTest

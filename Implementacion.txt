@@ -12,13 +12,11 @@ no han alcanzado la visibilidad que su producto amerita.
 # Tareas pendientes:
 - Controller User             (Chero)
 - Controller Restaurant       (Chero)
-- Controller Register         (Elyelin)
 - Controller RestaurantMenu   (Fernando)
 - Controller Favorite         (Fernando)
 - Controller Search           (Elyelin)
 
-# Tests
-- RegisterTest              (Elyelin)         
+# Tests       
 - UserTest                  (Chero)
 - RestaurantTest            (Chero)
 - RestaurantMenuTest        (Fernando)
@@ -26,7 +24,6 @@ no han alcanzado la visibilidad que su producto amerita.
 - SearchTest                (Elyelin)
 
 # Rutas
-- Register                  (Elyelin)
 - User                      (Chero)
 - Restaurant                (Chero)
 - Restaurant menu           (Fernando)
