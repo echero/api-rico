@@ -20,7 +20,7 @@ module.exports = {
     const filtered = restaurants.filter(r => { 
       const name = r.conten.toLowerCase()
       //retorno sí el nombre del restaurant convertido en minuscula  
-      //contiene la palbra que recibo por query string
+      //contiene la palabra que recibo por query string
       return name.includes(query)
     })
 

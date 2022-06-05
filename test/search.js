@@ -3,21 +3,16 @@ const { describe } = require("mocha")
 const axios = require("axios")
 var app = require('../index')
 
-describe("API RICO REGISTER", () => {
+describe("API RICO SEARCH", () => {
     
-    describe("GET /restaurant", () => {
-        it("Trae todos los restaurant del controlador", async () => {
+    describe("GET /search", () => {
+        it("Trae todos los restaurant que consiga que contiene la palabra que recibo por query string", async () => {
             // const response = await axios.get('http://localhost:3000/restaurant')
-
             // expect(response.data).to.eql([{ id: 1, conten: "Restaurant Rosa Negra",
             // Direccion: "Dardor Rocha 1500", Estado : true}, { id: 2, conten: "Restaurant La Bisteca",
             // Direccion: "Dardor Rocha 1000",Estado : true}])
-        })
-    })
-
-    describe("POST /register crear un nuevo registro", () => {
-        it("Crear un nuevo registro  en la lista de registros retornando 200", () => {
-                  chai.request(app)
+            /**
+             * chai.request(app)
                   .post('/register')
                     //.post('/api/register/')
                    // .set('Accept', 'application/json')
@@ -34,10 +29,11 @@ describe("API RICO REGISTER", () => {
                         expect(JSON.parse(res.text))
                         .to.eql({})
                     })
-                   // .expect(200, done)   
+             */
         })
-    }) 
-})
-////
+    })
 /*obtenemos nuestra api rest que vamos a testear*/
 //var app = require('../app/server')
+const { expect } = require("chai")
+const { describe } = require("mocha")
+const axios = require("axios")
