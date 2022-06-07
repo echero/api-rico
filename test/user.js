@@ -1,35 +1,61 @@
-const chai = require("chai")
-const { describe } = require("mocha")
+const chai = require('chai')
 const chaiHttp = require('chai-http')
-const app = require('../app')
-const { expect } = require("chai")
+const { describe } = require('mocha')
+// const axios = require('axios')
+const index = require('../index')
+// import app from '../app'
+const { expect } = chai
 
 chai.use(chaiHttp)
 
 describe("API RICO", () => {
     
-    describe("GET /restaurant", () => {
-        it("Trae todos los restaurant del controlador", async () => {
+    describe("GET /user", () => {
+        it("Trae todos los users del controlador", async () => {
             // const response = await axios.get('http://localhost:3000/user')
 
-            chai.request(app).get('/user').end((_, res) =>{
+            chai.request(index)
+            .get('/user')
+            .end((_, res) =>{
                 expect(res).to.have.status(200)
-                expect(response.data).to.eql([{ id: 1, conten: "Restaurant Rosa Negra",
-                Direccion: "Dardor Rocha 1500", Estado : true}, { id: 2, conten: "Restaurant La Bisteca",
-                Direccion: "Dardor Rocha 1000",Estado : true}])
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql([
+                    { id: 1, Nombre: "Ezequiel", Apellido: "Cherone", Edad : 34, Estado : true},
+                    { id: 2, Nombre: "Javier", Apellido: "Cherone", Edad : 39, Estado : true }
+                ])
             })
         })
     })
 
 
     describe("GET /restaurant/:id", () => {
-        it("Trae un restaurant especifico", async () => {
-            const response = await axios.get('http://localhost:3000/user/1')
+        it("Trae un user especifico", async () => {
+            // const response = await axios.get('http://localhost:3000/user/1')
 
-            expect(response.data).to.eql({ id: 1, conten: "Restaurant Rosa Negra",
-            Direccion: "Dardor Rocha 1500", Estado : true})
+            chai.request(index)
+            .get('/user/1')
+            .end((_, res) =>{
+                expect(res).to.have.status(200)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql(
+                    { id: 1, Nombre: "Ezequiel", Apellido: "Cherone", Edad : 34, Estado : true})
+            })
         })
-    })
+
+        it("da error con un user que no existe", async () => {
+
+            chai.request(index)
+              .get('/user/3')
+              .end((_, res) => {
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                  .to.eql({ message: "User no encontrado" })          
+              })
+          })
+        })
 
     describe("POST /restaurant", () => {
         describe("Cuando el Restaurant ha crear esta en el mismo nivel que otro", () =>{
