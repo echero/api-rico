@@ -1,4 +1,4 @@
-const restaurants = require('../Data/index')
+const restaurants = require('../data/Restaurant')
 
 module.exports = {
   get: async (req, res) => {
