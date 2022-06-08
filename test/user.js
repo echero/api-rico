@@ -29,7 +29,7 @@ describe("API RICO", () => {
     })
 
 
-    describe("GET /restaurant/:id", () => {
+    describe("GET /user/:id", () => {
         it("Trae un user especifico", async () => {
             // const response = await axios.get('http://localhost:3000/user/1')
 
@@ -57,7 +57,7 @@ describe("API RICO", () => {
           })
         })
 
-    describe("POST /restaurant", () => {
+    describe("POST /user", () => {
         describe("Cuando el Restaurant ha crear esta en el mismo nivel que otro", () =>{
             it("No es posible agregar ese Restaurant")
         })
@@ -66,13 +66,13 @@ describe("API RICO", () => {
         })
     })
 
-    describe("DELETE / restaurant", () => {
+    describe("DELETE /user", () => {
         it("Borra un restaurant de la lista de restaurantes", () => {
 
         })
     }) 
 
-    describe("PUT /restaurant", () => {
+    describe("PUT /user", () => {
         it("Modifica un restaurant de la lista de restaurant", () => {
 
         })

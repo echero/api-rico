@@ -6,6 +6,7 @@ const controller = require("../controllers/RestaurantController");
 //establecemos nuestras rutas
 //prefijos '/' - '/:id' 
 router.get("/", controller.get);
-router.get("/:id", controller.id)
+router.get("/:id", controller.id);
+router.post("/", controller.post)
 
 module.exports = router;
