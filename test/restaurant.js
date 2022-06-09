@@ -1,34 +1,109 @@
-const { expect } = require("chai")
-const { describe } = require("mocha")
-const axios = require("axios")
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const { describe } = require('mocha')
+// const axios = require('axios')
+const index = require('../index')
+// import app from '../app'
+const { expect } = chai
+
+chai.use(chaiHttp)
 
 describe("API RICO", () => {
     
     describe("GET /restaurant", () => {
-        it("Trae todos los restaurant del controlador", async () => {
-            const response = await axios.get('http://localhost:3000/restaurant')
+        it("Trae todos los restaurant del data/Restaurant", async () => {
+            // const response = await axios.get('http://localhost:3000/user')
 
-            expect(response.data).to.eql([{ id: 1, conten: "Restaurant Rosa Negra",
-            Direccion: "Dardor Rocha 1500", Estado : true}, { id: 2, conten: "Restaurant La Bisteca",
-            Direccion: "Dardor Rocha 1000",Estado : true}])
+            chai.request(index)
+            .get('/restaurant')
+            .end((_, res) =>{
+                expect(res).to.have.status(200)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql([
+                    { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232 },
+                    { id: 2, name: "Güerrín", direction: "Corrientes 1368", horario: "9am-23pm", tipoRestaurante: "Pizza", telefono: 8565446 },
+                    { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 }
+                ])
+            })
         })
     })
 
 
     describe("GET /restaurant/:id", () => {
-        it("Trae un restaurant especifico", async () => {
-            const response = await axios.get('http://localhost:3000/restaurant/1')
+        it("Trae un user especifico", async () => {
+            // const response = await axios.get('http://localhost:3000/user/1')
 
-            expect(response.data).to.eql({ id: 1, conten: "Restaurant Rosa Negra",
-            Direccion: "Dardor Rocha 1500", Estado : true})
+            chai.request(index)
+            .get('/restaurant/1')
+            .end((_, res) =>{
+                expect(res).to.have.status(200)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql(
+                    { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232 })
+            })
         })
-    })
 
-    describe("POST /restaurant", () => {
-        it("Crea un restaurant en la lista de restaurant", () => {
-            
+        // it("da error con un restaurant que no existe", async () => {
+
+        //     chai.request(index)
+        //       .get('/restaurant/16')
+        //       .end((_, res) => {
+        //         expect(res).to.have.status(404)
+        //         expect(res).to.be.json
+        //         expect(JSON.parse(res.text))
+        //           .to.eql({ message: "Restaurant no encontrado" })          
+        //       })
+        //   })
         })
-    })
+
+        describe("POST /restaurant", () => {
+            describe("cuando el rastaurant nuevo está en el nivel de otro", () => {
+              it("no es posible aceptar ese restaurant")     
+            })
+        
+            describe("cuando el restaurant no está en el nivel de otro", () => {
+              it("crea un restaurant", () => {
+                chai.request(index)
+                  .post('/restaurant')
+                  .send({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
+                  .end((_, res) => {
+                    expect(res).to.have.status(201) // CREATED
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
+                  })
+              })
+        
+              it("muestra un restaurant recién creado", () => {
+                chai.request(index)
+                  .post('/restaurant')
+                  .send({ id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 })
+                  .end((_, res) => {
+                    expect(res).to.have.status(201) // CREATED
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql({ id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 })
+                  })
+        
+                chai.request(index)
+                  .get('/restaurant')
+                  .end((_, res) => {
+                    expect(res).to.have.status(200)
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql([
+                        { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232 },
+                        { id: 2, name: "Güerrín", direction: "Corrientes 1368", horario: "9am-23pm", tipoRestaurante: "Pizza", telefono: 8565446 },
+                        { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 },
+                        { id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 },
+                        { id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 }
+                      ])
+                  })
+              })
+            })
+          })
 
     describe("DELETE / restaurant", () => {
         it("Borra un restaurant de la lista de restaurantes", () => {

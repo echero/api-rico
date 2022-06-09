@@ -1,3 +1,4 @@
+const Restaurant = require('../models/restaurant')
 const restaurants = require('../data/Restaurant')
 
 module.exports = {
@@ -13,5 +14,29 @@ module.exports = {
         else{
             res.status(404).end()
         }
+    },
+    post : (req, res) => {
+
+        const { id, name, direction, horario, tipoRestaurante, telefono } = req.body
+  
+        const restaurant = new Restaurant(id, name, direction, horario, tipoRestaurante, telefono)
+
+        const busqueda = restaurants.find(restaurant => restaurant.id === restaurant.id)
+
+        try {
+            
+            if(!busqueda){
+                restaurants.push(restaurant) 
+                res.status(201)
+                res.json(req.params)
+            }
+            else{
+                res.status(404)
+            }
+            
+          } catch(e) {
+            res.status(409)
+            res.json(restaurant)
+          }
     } 
 }
