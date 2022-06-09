@@ -1,5 +1,6 @@
 const Restaurantes = [
   {
+    id: 1,
     name: "Avenida Rivadavia 3439",
     direction: "El Pobre Luis",
     horario: "08am-22pm",
@@ -7,6 +8,7 @@ const Restaurantes = [
     telefono: 3232232,
   },
   {
+    id: 2,
     name: "Güerrín",
     direction: "Corrientes 1368",
     horario: "9am-23pm",
@@ -14,6 +16,7 @@ const Restaurantes = [
     telefono: 8565446,
   },
   {
+    id: 3,
     name: "La Pescadorita",
     direction: "Humboldt 1905",
     horario: "9am-23pm",
@@ -21,6 +24,7 @@ const Restaurantes = [
     telefono: 798778,
   },
   {
+    id: 4,
     name: "La Parolaccia",
     direction: "Alicia Moureau de Justo 1052",
     horario: "10am-02am",
@@ -28,6 +32,7 @@ const Restaurantes = [
     telefono: 356546,
   },
   {
+    id: 5,
     name: "Narda Comedor",
     direction: "Mariscal Antonio José de Sucre 664",
     horario: "9am-23pm",
@@ -35,13 +40,15 @@ const Restaurantes = [
     telefono: 4765676,
   },
   {
+    id: 6,
     name: "La Kitchen",
     direction: "Núñez 3400",
     horario: "10am-22pm",
-    tipoRestaurante:"Cafe",
+    tipoRestaurante: "Cafe",
     telefono: 5687687,
   },
   {
+    id: 7,
     name: "Atelier Fuerza Dos",
     direction: "Delgado 1461",
     horario: "9am-23pm",
@@ -49,6 +56,7 @@ const Restaurantes = [
     telefono: 234354,
   },
   {
+    id: 8,
     name: "La Mezzetta",
     direction: "Av. Álvarez Thomas 1321",
     horario: "10am-02am",
@@ -56,6 +64,7 @@ const Restaurantes = [
     telefono: 6587687,
   },
   {
+    id: 9,
     name: "Strange Brewing",
     direction: "Delgado 658",
     horario: "9am-23pm",
@@ -63,6 +72,7 @@ const Restaurantes = [
     telefono: 9808908,
   },
   {
+    id: 10,
     name: "Gran Dabbang",
     direction: "Av. Raúl Scalabrini Ortiz 1543",
     horario: "9am-23pm",
@@ -70,6 +80,7 @@ const Restaurantes = [
     telefono: 656456,
   },
   {
+    id: 11,
     name: "Aramburu",
     direction: "Vicente López 1661",
     horario: "9am-23pm",
@@ -77,6 +88,7 @@ const Restaurantes = [
     telefono: 755867,
   },
   {
+    id: 12,
     name: "La Alacena",
     direction: "Gascón 1401",
     horario: "10am-02am",
@@ -84,6 +96,7 @@ const Restaurantes = [
     telefono: 564564,
   },
   {
+    id: 13,
     name: "Urondo",
     direction: "Beauchef 1204",
     horario: "9am-23pm",
@@ -91,6 +104,7 @@ const Restaurantes = [
     telefono: 345242,
   },
   {
+    id: 14,
     name: "Yiyo El Zeneize",
     direction: "Av. Eva Perón 4402",
     horario: "10am-02am",
@@ -98,6 +112,7 @@ const Restaurantes = [
     telefono: 768768,
   },
   {
+    id: 15,
     name: "Una Canción Coreana",
     direction: "Av. Carabobo 1549",
     horario: "9am-23pm",
@@ -105,5 +120,4 @@ const Restaurantes = [
     telefono: 78675,
   },
 ];
-//export default Restaurantes;
 module.exports = Restaurantes;
