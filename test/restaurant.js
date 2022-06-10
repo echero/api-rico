@@ -75,20 +75,21 @@ describe("API RICO", () => {
                       .to.eql({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
                   })
               })
-        
+              
               it("muestra un restaurant recién creado", () => {
                 chai.request(index)
                   .post('/restaurant')
-                  .send({ id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 })
+                  .send({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   .end((_, res) => {
                     expect(res).to.have.status(201) // CREATED
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
-                      .to.eql({ id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 })
+                      .to.eql({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   })
-        
-                chai.request(index)
-                  .get('/restaurant')
+
+                  it("muestra todos los restaurant creados hasta el momento", () => {
+                    chai.request(index)
+                  .post('/restaurant')
                   .end((_, res) => {
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
@@ -98,12 +99,13 @@ describe("API RICO", () => {
                         { id: 2, name: "Güerrín", direction: "Corrientes 1368", horario: "9am-23pm", tipoRestaurante: "Pizza", telefono: 8565446 },
                         { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 },
                         { id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 },
-                        { id: 5, name: "Lo del galle", direction: "Av. Maipu 1200", horario: "9am-24pm", tipoRestaurante: "Comida Española", telefono: 47890987 }
+                        { id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 }
                       ])
                   })
+                  })          
               })
             })
-          })
+        })
 
     describe("DELETE / restaurant", () => {
         it("Borra un restaurant de la lista de restaurantes", () => {
