@@ -26,7 +26,8 @@ let logger = require('morgan');
 
 const userRoute = require("./routes/User");
 const restaurantRoute = require("./routes/Restaurant");
-const searchRoute = require("./routes/Search")
+const searchRoute = require("./routes/Search");
+const favoritesRoute = require(".routes/Favorites");
 
 let app = express();
 
@@ -40,6 +41,8 @@ app.use("/user", userRoute);
 app.use("/restaurant", restaurantRoute)
 
 app.use("/search", searchRoute)
+
+app.use("/Favorites", favoritesRoute)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
