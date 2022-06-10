@@ -6,7 +6,7 @@ const { expect } = chai
 
 const restaurants = require('../data/Restaurant')
 // const users = require('../data/User') --> only the data not the handlers
-const users = require('../data/User') //everything mixed
+const users = require('../services/dataHandlerUser') //everything mixed
 
 const app = require('../index')
 
@@ -38,18 +38,36 @@ describe('API RICO Favorites', ()=>{
     describe('GET /Favorites/:id', ()=>{
         //done []
         it('trae json de favoritos del usuario', ()=>{
-            chai.request(index)
+            chai.request(app)
             .get('/Favorites/1')
             .end((_, res) =>{
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
-                .to.eql(users.favoritesByUser(1))
-                // .to.eql({id: 1, name: 'Ezequiel', favorites: [1]})
+                // .to.eql(users.favoritesByUser(1))
+                .to.eql({id: 1, name: 'Ezequiel', favorites: [1]})
             })
         })
-        it('trae error si no tiene favoritos el usuario', ()=>{})
-        it('trae error si no existe ese usuaio', ()=>{})
+        it('trae error si no tiene favoritos el usuario', ()=>{
+            chai.request(app)
+                    .get('/Favorites/5')
+                    .end((_, res) => {
+                    expect(res).to.have.status(404)
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                        .to.eql({ message: "There are no favorites for this user"})          
+                    })
+        })
+        it('trae error si no existe ese usuaio', ()=>{
+            chai.request(app)
+            .get('/Favorites/5')
+            .end((_, res) => {
+            expect(res).to.have.status(404)
+            expect(res).to.be.json
+            expect(JSON.parse(res.text))
+                .to.eql({ message: "There are no users with that id"})          
+            })
+        })
     })
 
     describe('POST /Favorites/:id', ()=>{

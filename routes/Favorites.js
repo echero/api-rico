@@ -8,6 +8,6 @@ const controller = require("../controllers/FavoritesController");
 router.get("/", controller.get);
 router.get("/:id", controller.id);
 router.post("/:id", controller.add);
-
+router.delete("/:id", controller.delete);
 
 module.exports = router;
