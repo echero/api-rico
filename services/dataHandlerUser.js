@@ -1,5 +1,4 @@
 const Users = require('../data/User')
-const User = require('../models/user')
 const Restaurants = require('../data/Restaurant')
 const e = require('express')
 

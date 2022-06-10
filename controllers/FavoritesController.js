@@ -1,5 +1,5 @@
 const restaurants = require('../data/Restaurant')
-const users = require('../data/User')
+const handlerUser = requier('../services/dataHandlerUser')
 
 module.exports = {
 
@@ -7,17 +7,15 @@ module.exports = {
         res.json(users.allUsersFavorites)
     },
     id : (req, res) => {
-        const userfavorites = users.favoritesByUser(req.params.id)
+        const userfavorites = handlerUsers.favoritesByUser(req.params.id)
         if(typeof(userfavorites) !== 'undefined'){
             res.json(userfavorites)
         }else{
             res.status(404).end()
         }
     },
-    add: (req, res) => {
-
-    },
-    remove : () => {
+    post : (req, res) => {
+        // const body = req.params
 
     },
     delete : ()  => {
