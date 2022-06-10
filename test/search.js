@@ -8,23 +8,6 @@ chai.use(chaiHttp);
 
 describe("API RICO SEARCH", () => {
   describe("GET /search?q=name", () => {
-    
-  it("Propiedad de #status", function () {
-    chai
-      .request(index)
-      .get("/search")
-      .end((_, res) => {
-        res.should.to.have.status(200);
-
-        (function () {
-          res.should.not.have.status(200);
-        }.should.throw("Se esperaba (status: 200)"));
-
-        (function () {
-          ({}.should.not.to.have.status(200));
-        }.should.throw("Se esperaba claves de 'status' o 'statusCode'"));
-      });
-  });
 
   it("Tiene éxito cuando la respuesta tiene un estado de error", async () => {
     chai
@@ -38,27 +21,6 @@ describe("API RICO SEARCH", () => {
         done(err);
       });
   });
-
-  // it("#param", function () {
-  //   chai
-  //     .request(index)
-  //     .get("/search?q=name")
-  //     .end((err, req, res) => {
-  //       req.should.to.have.param("q");
-  //       req.should.have.param("name");
-  //       req.should.not.have.param("q");
-  //       req.should.not.have.param("name");
-
-  //       (function () {
-  //         req.should.not.have.param("q");
-  //       }.should.throw(/espera .* pero no tiene propiedad \'q\'/));
-
-  //       (function () {
-  //         req.should.not.have.param("q", "name");
-  //       }.should.throw(/espera .* pero no tiene propiedad \'q\' of \'name\'/));
-  //     });
-  // });
-
   
     it("Trae todos los restaurant que consiga que contiene la palabra que recibo por query string", () => {
       chai
@@ -100,5 +62,26 @@ describe("API RICO SEARCH", () => {
         });
       });
   });
-});
+
+  // it("#param", function () {
+  //   chai
+  //     .request(index)
+  //     .get("/search")
+  //     .end((err, res) => {
+  //       // expect(res).have.param("q");
+  //       // expect(res).have.param("name");
+  //       // expect(res).not.have.param("q");
+  //       // expect(res).not.have.param("name");
+
+  //       (function () {
+  //         expect(res).not.have.param("q");
+  //       }.should.throw(/espera .* pero no tiene propiedad \'q\'/));
+
+  //       // (function () {
+  //       //   expect(res).not.have.param("q", "name");
+  //       // }.throw(/espera .* pero no tiene propiedad \'q\' of \'name\'/));
+  //     });
+  // });
+
+    });
 });
