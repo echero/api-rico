@@ -1,13 +1,13 @@
 const Restaurant = require('../models/restaurant')
-const restaurants = require('../data/Restaurant')
+const restaurantsData = require('../data/Restaurant')
 
 module.exports = {
     get : (req, res) => {
-        res.json(restaurants)
+        res.json(restaurantsData)
     },
     id : (req, res) => {
         const id = Number(req.params.id)
-        const restaurant = restaurants.find(restaurant => restaurant.id === id)
+        const restaurant = restaurantsData.find(restaurant => restaurant.id === id)
         if(restaurant){
             res.json(restaurant)
         }
@@ -21,12 +21,13 @@ module.exports = {
   
         const restaurant = new Restaurant(id, name, direction, horario, tipoRestaurante, telefono)
 
-        const busqueda = restaurants.find(restaurant => restaurant.id === restaurant.id)
+        const busqueda = restaurantsData.find(rest => rest.id == rest.id)
+
 
         try {
             
             if(!busqueda){
-                restaurants.push(restaurant) 
+                restaurantsData.push(restaurant) 
                 res.status(201)
                 res.json(req.params)
             }
@@ -38,5 +39,5 @@ module.exports = {
             res.status(409)
             res.json(restaurant)
           }
-    } 
+     } 
 }
