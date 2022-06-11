@@ -27,13 +27,13 @@ let logger = require('morgan');
 const userRoute = require("./routes/User");
 const restaurantRoute = require("./routes/Restaurant");
 const searchRoute = require("./routes/Search");
-const favoritesRoute = require(".routes/Favorites");
+const favoritesRoute = require("./routes/Favorites");
 
 let app = express();
 
 app.use(logger('dev'));
+app.use(express.urlencoded({ extended: true }));//cambie algo puede romper
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/user", userRoute);
@@ -42,7 +42,7 @@ app.use("/restaurant", restaurantRoute)
 
 app.use("/search", searchRoute)
 
-app.use("/Favorites", favoritesRoute)
+app.use("/favorites", favoritesRoute)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

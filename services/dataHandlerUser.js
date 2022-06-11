@@ -1,18 +1,11 @@
 const Users = require('../data/User')
-const Restaurants = require('../data/Restaurant')
-const e = require('express')
+const handlerRestaurant = require('./dataHandlerRestaurant')
+const common = require('./common')
+const { idAlreadyInUse } = common
+const { verifyIdRestaurant } = handlerRestaurant
 
 //methods used to help interact with users data
-const idAlreadyInUse = (id) => {
-    //search if the id is in use
-    const finded = Users.find(u => u.id === id)
-    if(finded){
-        // throw new Error(`ya hay otro usuario con el mismo id: (${id})`)
-        return true
-    }else{
-        return false
-    }
-}
+
     //method that verifies that all props are filled with things
 const verifierData = ({id, name, surname, age, state, favorites}) => {
     let verified = false
@@ -24,26 +17,16 @@ const verifierData = ({id, name, surname, age, state, favorites}) => {
     typeof(favorites) === 'object' ? verified = true : verified = false
     return verified
 }
-    //unifies 2 arrays into 1 without the duplicates
-const ignoreDoubleData = (arr1, arr2) => {    
-    const part2 = arr2.filter(a => !arr1.includes(a))
-    const result = arr1.concat(part2);
-    return result
-}
     //returns true or false depending if the array only includes numbers
 const verifyDataFav = (arr) => {
     //in this case the favorites are only an array with the ids of the restaurants
     return arr.every(e => {return typeof e === 'number'})
 }
-    //verifies if the id of the restaurant is valid or not
-const verifyIdRestaurant = (id) => {
-    let verified = false
-    for(e of Restaurants){
-        if(e.id === id) verified = true
-    }
-    return verified
+    //assuming all ids in the array are numbers verifies that they are of real id of restaurants
+const verifyFavAll = (arr) => {
+    // verifyIdRestaurant
+    return arr.every(e => verifyIdRestaurant(e))
 }
-
 
 //all the methods to interact with the data
 const DataUsers = {
@@ -53,14 +36,16 @@ const DataUsers = {
     userById : (id) => {
         const res = undefined
         if(typeof(id) === 'number'){
-        if(idAlreadyInUse(id)){res = Users.find()}
+        if(idAlreadyInUse(id, Users)){res = Users.find()}
         }
     return res
     },
     favoritesByUser : (id) => {
         const userAndFavs = undefined
-        if(typeof(id) === 'number' && idAlreadyInUse(id)){
-        const user = Users.find(user => user.id === id)
+        // if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+        // const user = Users.find(user => user.id === id)
+        const user = userById(id)
+        if(typeof(user) !== 'undefined'){
         const {id, name, favorites} =  user
         userAndFavs = {id, name, favorites}
         }
@@ -76,7 +61,7 @@ const DataUsers = {
     addUser : (newUser) => {
         let done
         if(verifierData(newUser)){
-            if(!idAlreadyInUse(newUser.id)) Users.push(newUser)
+            if(!idAlreadyInUse(newUser.id, Users)) Users.push(newUser)
             done = true;
         }else {
             done = false
@@ -101,17 +86,28 @@ const DataUsers = {
     // modifyUserSurname,
     // modifyUserAge,
     // modifyUserState,
+    deleteUser : (id) => {
+        const res = undefined
+        if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+            res = Users.pop()
+        }
+        return res
+    },
     addFavoriteToUser: (id, arrayFavs)=> {
         let done = false
-        if(typeof(id) === 'number' && idAlreadyInUse(id)){
+        if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
             if(verifyDataFav(arrayFavs)){
-                const user = userById(id)
-                user.favorites = ignoreDoubleData(user.favorites, arrayFavs)
-                done = true
+                if(verifyFavAll(arrayFavs)){
+                    const user = userById(id)
+                    user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
+                    done = true
+                }
             }
         }
         return done
     },
+    verifyFavAll,
+    verifyDataFav, 
     removeAllFavorites : (id)=>{
         let done = false
         const user = this.userById(id)

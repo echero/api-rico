@@ -7,7 +7,7 @@ const controller = require("../controllers/FavoritesController");
 //prefijos '/' - '/:id' 
 router.get("/", controller.get);
 router.get("/:id", controller.id);
-router.post("/:id", controller.add);
+router.post("/:id", controller.post);
 router.delete("/:id", controller.delete);
 
 module.exports = router;
