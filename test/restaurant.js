@@ -86,10 +86,10 @@ describe("API RICO", () => {
                     expect(JSON.parse(res.text))
                       .to.eql({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   })
+                })
 
-                  it("muestra todos los restaurant creados hasta el momento", () => {
                     chai.request(index)
-                  .post('/restaurant')
+                  .get('/restaurant')
                   .end((_, res) => {
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
@@ -104,8 +104,8 @@ describe("API RICO", () => {
                   })
                   })          
               })
-            })
-        })
+          
+        
 
     describe("DELETE / restaurant", () => {
         it("Borra un restaurant de la lista de restaurantes", () => {

@@ -21,8 +21,11 @@ describe("API RICO", () => {
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql([
-                    { id: 1, Nombre: "Ezequiel", Apellido: "Cherone", Edad : 34, Estado : true},
-                    { id: 2, Nombre: "Javier", Apellido: "Cherone", Edad : 39, Estado : true }
+                    { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]},
+                    { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3]},
+                    { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
+                    { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
+                    { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []}
                 ])
             })
         })
@@ -40,31 +43,72 @@ describe("API RICO", () => {
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql(
-                    { id: 1, Nombre: "Ezequiel", Apellido: "Cherone", Edad : 34, Estado : true})
+                    { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]})
             })
         })
 
-        it("da error con un user que no existe", async () => {
+        // it("da error con un user que no existe", async () => {
 
-            chai.request(index)
-              .get('/user/3')
-              .end((_, res) => {
-                expect(res).to.have.status(404)
-                expect(res).to.be.json
-                expect(JSON.parse(res.text))
-                  .to.eql({ message: "User no encontrado" })          
-              })
-          })
+        //     chai.request(index)
+        //       .get('/user/6')
+        //       .end((_, res) => {
+        //         expect(res).to.have.status(404)
+        //         expect(res).to.be.json
+        //         expect(JSON.parse(res.text))
+        //           .to.eql({ message: "User no encontrado" })          
+        //       })
+        //   })
         })
 
     describe("POST /user", () => {
-        describe("Cuando el Restaurant ha crear esta en el mismo nivel que otro", () =>{
+        describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
             it("No es posible agregar ese Restaurant")
         })
-        it("Crea un restaurant en la lista de restaurant", () => {
-            
-        })
-    })
+
+        describe("cuando el usuario no está en el nivel de otro", () => {
+            it("crea un usuario", () => {
+              chai.request(index)
+                .post('/user')
+                .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+                .end((_, res) => {
+                  expect(res).to.have.status(201) // CREATED
+                  expect(res).to.be.json
+                  expect(JSON.parse(res.text))
+                    .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+                })
+            })
+
+            it("muestra un usuario recién creado", () => {
+                chai.request(index)
+                  .post('/user')
+                  .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+                  .end((_, res) => {
+                    expect(res).to.have.status(201) // CREATED
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+                  })
+                })
+
+                    chai.request(index)
+                  .get('/user')
+                  .end((_, res) => {
+                    expect(res).to.have.status(200)
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql([
+                        { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]},
+                        { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3]},
+                        { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
+                        { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
+                        { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []},
+                        { id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []}
+                      ])
+                  
+                })          
+            }) 
+      })
+    
 
     describe("DELETE /user", () => {
         it("Borra un restaurant de la lista de restaurantes", () => {
