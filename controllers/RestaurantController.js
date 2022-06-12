@@ -19,14 +19,13 @@ module.exports = {
 
         const { id, name, direction, horario, tipoRestaurante, telefono } = req.body
   
-        const restaurant = new Restaurant(id, name, direction, horario, tipoRestaurante, telefono)
+        const restaurant = new Restaurant(parseInt(id), name, direction, horario, tipoRestaurante, telefono)
 
-        const busqueda = restaurantsData.find(rest => rest.id == rest.id)
-
+        const busqueda = restaurantsData.find(rest => rest.id === restaurant.id)
 
         try {
             
-            if(!busqueda){
+            if(typeof(busqueda) === 'undefined'){
                 restaurantsData.push(restaurant) 
                 res.status(201)
                 res.json(req.params)

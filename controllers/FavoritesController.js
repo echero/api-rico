@@ -1,7 +1,9 @@
 const { json } = require('express')
 const { idAlreadyInUse } = require('../services/common')
 const handlerUser = require('../services/dataHandlerUser')
-// const numRegex = /^\d+$/;
+const Users = require('../data/User')
+const { verifyDataFav, verifyFavAll } = require('../services/dataHandlerUser')
+const numRegex = /^\d+$/;
 
 module.exports = {
     //get
@@ -53,50 +55,51 @@ module.exports = {
     NO FUNCIONA
     */
     post : (req, res) => {
-        let id
+        let id = parseInt(req.params.id)
         let body = req.body
-        
-        if(numRegex.test(req.params.id)){
-            id = parseInt(req.params.id)  
-            if(!Object.entries(user).length === 0){
-                const user = handlerUser.userById(id)
-                if(!body.hasOwnProperty('favorites')){
-                    //'da un error por no recibir favoritos'
-                    res.status(404)
-                    res.json({message: "There were no valid data in the request" })
-                }else{
-                    let fav = req.body.favorites
-                    if (fav.length !== 0){
-                        if(handlerUser.verifyDataFav(fav)){
-                            if(handlerUser.verifyFavAll(fav)){
-                                if(handlerUser.addFavoriteToUser(id, fav)){
-                                    //'agrega favoritos al usuario'
-                                    res.status(201)
-                                    res.json({message: 'Favorites list updated'})
-                                }
-                            }else{
-                                //'da un error al no encontrar restaurants con las id recibidas'
-                                res.status(404)
-                                res.json({message: "the restaurants weren't found, some or all of the id's provided may not be from restaurants in the database"})
-                            }
-                        }else{
-                            //'da un error al no tener en favoritos validas id'
-                            res.status(404)
-                            res.json({ message: "The id's of the favourite restaurants are not valid" })
-                        }
+        let fav
+        if(body.hasOwnProperty('favorites')){
+            fav = req.body.favorites
+                // res.json(id)
+            if(handlerUser.verifyFavAll(fav)){
+                if(idAlreadyInUse(id, Users)){
+                    handlerUser.addFavoriteToUser(id, fav)
+                        //'agrega favoritos al usuario'
+                        res.status(201)
+                        res.json({message: 'Favorites list updated'})
+                    }else{
+                        //'da un error al no encontrar tal usuario'
+                        res.status(404)
+                        res.json({ message: "The user id is not valid or the user does't exist"})
                     }
+                }else{
+                    //'da un error al no encontrar restaurants con las id recibidas'
+                    res.status(404)
+                    res.json({message: "the restaurants weren't found, some or all of the id's provided may not be from restaurants in the database"})
                 }
-            }
-            res.json(body)
-        }else{
-            //'da un error al no encontrar tal usuario'
-            res.status(404)
-            res.json({ message: "The user id is not valid or the user does't exist"})
         }
-
-        
-
     },
+    /*
+   post : () => {
+    /*
+    let id = parseInt(req.params.id)
+    let body = req.body
+    let fav = req.body.favorites
+    let arr = [1,3]
+    
+    // typeof(id) === 'number' && idAlreadyInUse(id, Users)
+    // let result = handlerUser.addFavoriteToUser(2,arr)
+    res.json(true)
+
+    // if(handlerUser.addFavoriteToUser(id, fav)){
+    //     //'agrega favoritos al usuario'
+    //     res.status(201)
+    //     res.json(fav)
+    // }else{
+    //     res.status(404)
+    //     res.json({ message: "error" })
+    // }
+    */
     //delete
     //elimina un favorito del usuario
     //elimina todos los favoritos del usuario

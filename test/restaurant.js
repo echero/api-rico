@@ -60,7 +60,7 @@ describe("API RICO", () => {
 
         describe("POST /restaurant", () => {
             describe("cuando el rastaurant nuevo está en el nivel de otro", () => {
-              it("no es posible aceptar ese restaurant")     
+              it("no es posible aceptar ese restaurant", () => {})     
             })
         
             describe("cuando el restaurant no está en el nivel de otro", () => {
@@ -69,6 +69,7 @@ describe("API RICO", () => {
                   .post('/restaurant')
                   .send({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
                   .end((_, res) => {
+                    console.log('crea test',res.text)
                     expect(res).to.have.status(201) // CREATED
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -86,11 +87,10 @@ describe("API RICO", () => {
                     expect(JSON.parse(res.text))
                       .to.eql({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   })
-                })
 
-                    chai.request(index)
-                  .get('/restaurant')
-                  .end((_, res) => {
+                  chai.request(index)
+                    .get('/restaurant')
+                    .end((_, res) => {
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -102,7 +102,8 @@ describe("API RICO", () => {
                         { id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 }
                       ])
                   })
-                  })          
+                  })
+                })          
               })
           
         

@@ -18,6 +18,7 @@ const { verifyIdRestaurant } = handlerRestaurant
 //     return verified
 // }
     //returns true or false depending if the array only includes numbers
+    //al pedo
 const verifyDataFav = (arr) => {
     //in this case the favorites are only an array with the ids of the restaurants
     return arr.every(e => {return typeof e === 'number'})
@@ -87,17 +88,20 @@ const deleteUser = (id) => {
 }
 
 const addFavoriteToUser = (id, arrayFavs)=> {
-    let done = false
-    if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
-        if(verifyDataFav(arrayFavs)){
-            if(verifyFavAll(arrayFavs)){
-                const user = userById(id)
-                user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
-                done = true
-            }
-        }
-    }
-    return done
+    // let done = false
+    // if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+    //     if(verifyDataFav(arrayFavs)){
+    //         if(verifyFavAll(arrayFavs)){
+    //             const user = userById(id)
+    //             user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
+    //             done = true
+    //         }
+    //     }
+    // }
+    // return done
+    const user = userById(id)
+    user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
+
 }
 const removeAllFavorites = (id)=>{
     let done = false
@@ -120,7 +124,7 @@ const removeFavorite = (id, idFav) => {
     return done
 }
 
-// //all the methods to interact with the data
+//all the methods to interact with the data
 const DataUsers = {
     allUsers : () => {
         return Users

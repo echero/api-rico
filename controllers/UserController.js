@@ -18,25 +18,24 @@ module.exports = {
     post : (req, res) => {
 
         const { id, name, surname, age, state, favorites } = req.body
-  
-        const user = new User(id, name, surname, age, state, favorites)
+        
+        const userNew = new User(parseInt(id), name, surname, age, state, favorites)
 
-        const busqueda = users.find(user => user.id === user.id)
+        const busqueda = users.find(user => user.id === userNew.id)
 
+        
         try {
-            
-            if(!busqueda){
-                users.push(user) 
+            if(typeof(busqueda) === 'undefined'){
+                users.push(userNew) 
                 res.status(201)
                 res.json(req.params)
             }
             else{
                 res.status(404)
             }
-            
-          } catch(e) {
+        } catch(e) {
             res.status(409)
-            res.json(user)
-          }
+            res.json(userNew)
+        }
     } 
 }

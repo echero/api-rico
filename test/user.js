@@ -88,11 +88,11 @@ describe("API RICO", () => {
                     expect(JSON.parse(res.text))
                       .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
                   })
-                })
-
-                    chai.request(index)
+                  
+                chai.request(index)
                   .get('/user')
                   .end((_, res) => {
+                    console.log('respuesta 2: ',res.text)
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -104,7 +104,7 @@ describe("API RICO", () => {
                         { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []},
                         { id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []}
                       ])
-                  
+                    })
                 })          
             }) 
       })
