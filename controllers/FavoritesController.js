@@ -34,13 +34,11 @@ module.exports = {
             res.json(userfavorites)
             }
         }else{
-            //if(typeof(id) === 'number'){//redundant
-                 if(Object.entries(handlerUser.userById(id)).length === 0){
-                    //trae error si no existe ese usuario
-                    res.status(404)
-                    res.json({ message: "There are no users with that id"})
-                 }
-            //}
+            if(Object.entries(handlerUser.userById(id)).length === 0){
+                //trae error si no existe ese usuario
+                res.status(404)
+                res.json({ message: "There are no users with that id"})
+            }
         }
     },
     //post

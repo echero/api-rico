@@ -24,21 +24,22 @@ const verifyIdRestaurant = (id) => {
     }
     return verified
 }
+const restaurantById = (id) => {
+    const res = {}
+    if(typeof(id) === 'number'){
+        if(idAlreadyInUse(id, Restaurants)){
+            res = Restaurants.find(e => e.id === id)
+        }
+    }
+    return res
+}
 
 const DataRestaurants = {
     verifyIdRestaurant,
     allRestaurants : () => {
         return Restaurants
     },
-    restaurantById : (id) => {
-        const res = {}
-        if(typeof(id) === 'number'){
-            if(idAlreadyInUse(id, Restaurants)){
-                res = Restaurants.find(e => e.id === id)
-            }
-        }
-        return res
-    },
+    restaurantById,
     addRestaurant : (newRestaurant) => {
         let done
         if(verifierData(newRestaurant)){
@@ -64,11 +65,15 @@ const DataRestaurants = {
         return done
     },
     deleteRestaurant : (id) => {
-        const res = undefined
+        let done = false
         if(typeof(id) === 'number' && idAlreadyInUse(id, Restaurants)){
-            res = Restaurants.pop()
+            const index = Restaurants.indexOf(id)
+            if(index !== -1){
+                Restaurants.splice(index, 1)
+                done = true
+            }
         }
-        return res
+        return done
     }
 }
 module.exports = DataRestaurants;
