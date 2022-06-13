@@ -109,14 +109,34 @@ describe("API RICO", () => {
         
 
     describe("DELETE / restaurant", () => {
-        it("Borra un restaurant de la lista de restaurantes", () => {
+        it("Borra un restaurant por id de la lista de restaurants", () => {
 
+          chai.request(index)
+          .delete('/restaurant/1')
+          .end((_, res) =>{
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232})
+          })
         })
     }) 
 
-    describe("PUT /restaurant", () => {
-        it("Modifica un restaurant de la lista de restaurant", () => {
+    describe("PUT /restaurant", async () => {
+        it("Modifica un restaurant por id de la lista de restaurant", () => {
 
+          chai.request(index)
+          .put('/restaurant/5')
+          .send({ name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
+          .end((_, res) =>{
+            // console.log('respuesta 22: ',res.text)
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                { id: 5, name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
+          })
         })
     })
 })

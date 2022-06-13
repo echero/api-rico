@@ -8,5 +8,7 @@ const controller = require("../controllers/RestaurantController");
 router.get("/", controller.get);
 router.get("/:id", controller.id);
 router.post("/", controller.post)
+router.delete("/:id", controller.delete)
+router.put("/:id", controller.put)
 
 module.exports = router;

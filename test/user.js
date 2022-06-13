@@ -92,7 +92,7 @@ describe("API RICO", () => {
                 chai.request(index)
                   .get('/user')
                   .end((_, res) => {
-                    console.log('respuesta 2: ',res.text)
+                    // console.log('respuesta 2: ',res.text)
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -111,14 +111,35 @@ describe("API RICO", () => {
     
 
     describe("DELETE /user", () => {
-        it("Borra un restaurant de la lista de restaurantes", () => {
+        it("Borra un restaurant por id de la lista de restaurantes", () => {
 
+          chai.request(index)
+          .delete('/user/1')
+          .end((_, res) =>{
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]})
+          })
         })
     }) 
 
-    describe("PUT /user", () => {
-        it("Modifica un restaurant de la lista de restaurant", () => {
+    describe("PUT /user", async () => {
+        it("Modifica un restaurant por id de la lista de restaurant", () => {
 
-        })
+          chai.request(index)
+          .put('/user/6')
+          .send({ name: "Chero", surname: "Chero", age : 34, state : true, favorites: [1,2]})
+          .end((_, res) =>{
+            // console.log('respuesta 22: ',res.text)
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                { id: 6, name: "Chero", surname: "Chero", age : 34, state : true, favorites: [1,2]})
+          })
+      
+      })
     })
 })
