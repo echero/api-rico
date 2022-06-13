@@ -22,8 +22,8 @@ describe("API RICO", () => {
                 expect(JSON.parse(res.text))
                 .to.eql([
                     { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]},
-                    { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3,2]},
-                    { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
+                    { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [3,2]},
+                    { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [2]},
                     { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
                     { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []}
                 ])
@@ -98,8 +98,8 @@ describe("API RICO", () => {
                     expect(JSON.parse(res.text))
                       .to.eql([
                         { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]},
-                        { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3,2]},
-                        { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
+                        { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [3,2]},
+                        { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [2]},
                         { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
                         { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []},
                         { id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []}
