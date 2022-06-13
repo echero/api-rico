@@ -307,22 +307,6 @@ describe('API RICO Menu', ()=>{
                 .to.eql({message :"there are no plates with that id"})
             })
         })
-        //'elimina todos los platos del menu'
-        //'trae error si no encuentra el menu del plato a eliminar'
-        //'trae error si no encuentra el plato a eliminar'
     })
 })
 
-
-/*
-describe('PUT /Menu/:id', ()=>{
-    //'modifica el menu'
-    //'trae error si el id del menu no es valida'
-    //'trae error is el id del restaurant no es valida'
-    //'trae error si los datos del menu modificado no está bien'
-    
-    //'modifica el plato del menu'
-    //'trae error si los datos del plato modificado no está bien'
-    //'trae error si no encuentra el menu del plato a modificar'
-    //'trae error si no encuentra el plato a modificar'
-})*/

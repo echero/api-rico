@@ -3,9 +3,8 @@ const Restaurants = require('../data/Restaurant')
 const Menu = require('../models/menu')
 const Plate = require('../models/plate')
 const { idAlreadyInUse } = require('../services/common')
-const { addPlate } = require('../services/dataHandlerMenu')
 const handlerMenu = require('../services/dataHandlerMenu')
-const { MenuById, allMenus, PlateById, deleteMenu, addMenu, verifierDataMenu} = handlerMenu
+const { MenuById, allMenus, PlateById, deleteMenu, addMenu, addPlate} = handlerMenu
 // const numRegex = /^\d+$/;
 //numRegex.test()
 

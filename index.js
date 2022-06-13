@@ -18,6 +18,8 @@
 //     console.log("Servidor corriendo en el puerto 3000");
 // });
 
+const port = process.env.PORT || 8080   // establecemos nuestro puerto 
+
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -61,6 +63,10 @@ app.use(function(err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     res.render('error');
+});
+
+app.listen(port, () =>{
+    console.log("Servidor corriendo en el puerto 8080");
 });
 
   module.exports = app;
