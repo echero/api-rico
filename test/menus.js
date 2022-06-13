@@ -15,7 +15,7 @@ describe('API RICO Menu', ()=>{
             .end((_,res)=> {
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
-                console.log('[respuesta 0 ] => ',res.text)//BUG
+                // console.log('[respuesta 0 ] => ',res.text)//BUG
                 expect(JSON.parse(res.text)).to.eql([
                 {"id":1,"idRestaurant":1,"plates":[{"id":1,"name":"choriso","price":500},{"id":2,"name":"morcilla","price":800},{"id":3,"name":"tacos de cerdo","price":700},{"id":4,"name":"Costillas BBQ","price":900}]},
                 {"id":2,"idRestaurant":2,"plates":[{"id":5,"name":"Pizza Napolitana","price":480},{"id":6,"name":"Pizza de mozzarella","price":700},{"id":7,"name":"Pizza Hawaiana","price":500},{"id":8,"name":"Pizza de Pepperoni","price":300},{"id":9,"name":"Pizza Prosciutto","price":660}]},
@@ -31,8 +31,8 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/1')
             .end((_, res) =>{
-                console.log('[respuesta 1 ] => ', res.text)//BUG
-                // expect(res).to.have.status(200)
+                // console.log('[respuesta 1 ] => ', res.text)//BUG
+                expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql({"id":1,"idRestaurant":1,"plates":[{"id":1,"name":"choriso","price":500},{"id":2,"name":"morcilla","price":800},{"id":3,"name":"tacos de cerdo","price":700},{"id":4,"name":"Costillas BBQ","price":900}]})
@@ -43,7 +43,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/9988989')
             .end((_, res) =>{
-                console.log('[respuesta 2 ] => ', res.text)//BUG
+                // console.log('[respuesta 2 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -55,7 +55,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/1/plates')
             .end((_, res) =>{
-                console.log('[respuesta 3 ] => ', res.text)//BUG
+                // console.log('[respuesta 3 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -72,7 +72,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/4/plates')
             .end((_, res) =>{
-                console.log('[respuesta 4 ] => ', res.text)//BUG
+                // console.log('[respuesta 4 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -85,7 +85,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/1/plate/1')
             .end((_, res) =>{
-                console.log('[respuesta 5 ] => ', res.text)//BUG
+                // console.log('[respuesta 5 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -97,7 +97,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/9988989/plate/1')
             .end((_, res) =>{
-                console.log('[respuesta 6 ] => ', res.text)//BUG
+                // console.log('[respuesta 6 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -109,7 +109,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/1/plate/9899')
             .end((_, res) =>{
-                console.log('[respuesta 7 ] => ', res.text)//BUG
+                // console.log('[respuesta 7 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -130,7 +130,7 @@ describe('API RICO Menu', ()=>{
                     {"id":4,"name":"salchicha parrillera","price":600}]
                 })
             .end((_, res) =>{
-                console.log('[respuesta 8 ] => ', res.text)//BUG
+                // console.log('[respuesta 8 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -140,7 +140,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/5')
             .end((_, res) =>{
-                console.log('[respuesta 8 B ] => ', res.text)//BUG
+                // console.log('[respuesta 8 B ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -164,7 +164,7 @@ describe('API RICO Menu', ()=>{
                     {"id":4,"name":"salchicha parrillera","price":600}]
                 })
             .end((_, res) =>{
-                console.log('[respuesta 9 ] => ', res.text)//BUG
+                // console.log('[respuesta 9 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -183,7 +183,7 @@ describe('API RICO Menu', ()=>{
                     {"id":4,"name":"salchicha parrillera","price":600}]
                 })
             .end((_, res) =>{
-                console.log('[respuesta 10 ] => ', res.text)//BUG
+                // console.log('[respuesta 10 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -202,7 +202,7 @@ describe('API RICO Menu', ()=>{
                     {"id":4,"name":"salchicha parrillera","price":600}]
                 })
             .end((_, res) =>{
-                console.log('[respuesta 11 ] => ', res.text)//BUG
+                // console.log('[respuesta 11 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -217,7 +217,7 @@ describe('API RICO Menu', ()=>{
             .post('/Menu/1/plate')
             .send({"id":9,"name":"fugazzetta","price":900})
             .end((_, res) =>{
-                console.log('[respuesta 12 ] => ', res.text)//BUG
+                // console.log('[respuesta 12 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -230,7 +230,7 @@ describe('API RICO Menu', ()=>{
             .post('/Menu/88/plate')
             .send({"id":9,"name":"fugazzetta","price":900})
             .end((_, res) =>{
-                console.log('[respuesta 13 ] => ', res.text)//BUG
+                // console.log('[respuesta 13 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -243,7 +243,7 @@ describe('API RICO Menu', ()=>{
             .post('/Menu/1/plate')
             .send({"id":9,"price":900})
             .end((_, res) =>{
-                console.log('[respuesta 14 ] => ', res.text)//BUG
+                // console.log('[respuesta 14 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -258,7 +258,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .delete('/Menu/1')
             .end((_, res) =>{
-                console.log('[respuesta 23 ] => ', res.text)//BUG
+                // console.log('[respuesta 23 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -267,7 +267,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/1')
             .end((_, res) =>{
-                console.log('[respuesta 23 B ] => ', res.text)//BUG
+                // console.log('[respuesta 23 B ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -279,7 +279,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .delete('/Menu/5675')
             .end((_, res) =>{
-                console.log('[respuesta 24 ] => ', res.text)//BUG
+                // console.log('[respuesta 24 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -291,7 +291,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .delete('/Menu/2/plate/5')
             .end((_, res) =>{
-                console.log('[respuesta 25 ] => ', res.text)//BUG
+                // console.log('[respuesta 25 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -300,7 +300,7 @@ describe('API RICO Menu', ()=>{
             chai.request(app)
             .get('/Menu/2/plate/5')
             .end((_, res) =>{
-                console.log('[respuesta 25 B ] => ', res.text)//BUG
+                // console.log('[respuesta 25 B ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))

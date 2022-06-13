@@ -132,7 +132,7 @@ describe("API RICO", () => {
           .put('/user/6')
           .send({ name: "Chero", surname: "Chero", age : 34, state : true, favorites: [1,2]})
           .end((_, res) =>{
-            // console.log('respuesta 22: ',res.text)
+            //  console.log('respuesta 22: ',res.text)
               expect(res).to.have.status(200)
               expect(res).to.be.json
               expect(JSON.parse(res.text))

@@ -16,7 +16,7 @@ describe('API RICO Favorites', ()=>{
             .end((_,res)=> {
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
-                console.log('[respuesta 0 ] => ',res.text)//BUG
+                // console.log('[respuesta 0 ] => ',res.text)//BUG
                 expect(JSON.parse(res.text)).to.eql([
                     {id: 1, name: 'Ezequiel', favorites: [1]},
                     {id: 2, name: 'Javier', favorites: [1,3]},
@@ -34,7 +34,7 @@ describe('API RICO Favorites', ()=>{
             chai.request(app)
             .get('/favorites/1')
             .end((_, res) =>{
-                console.log('[respuesta 1 ] => ', res.text)//BUG
+                // console.log('[respuesta 1 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -46,7 +46,7 @@ describe('API RICO Favorites', ()=>{
             chai.request(app)
                     .get('/favorites/5')
                     .end((_, res) => {
-                        console.log('[respuesta 2 ] => ', res.text)//BUG
+                        // console.log('[respuesta 2 ] => ', res.text)//BUG
                         expect(res).to.have.status(404)
                         expect(res).to.be.json
                         expect(JSON.parse(res.text))
@@ -58,7 +58,7 @@ describe('API RICO Favorites', ()=>{
             chai.request(app)
             .get('/favorites/333')
             .end((_, res) => {
-            console.log('[respuesta 3 ] => ', res.text)//BUG
+            // console.log('[respuesta 3 ] => ', res.text)//BUG
             expect(res).to.have.status(404)
             expect(res).to.be.json
             expect(JSON.parse(res.text))
@@ -77,7 +77,7 @@ describe('API RICO Favorites', ()=>{
                             favorites: [2, 3]
                         })
                         .end((_, res) => {
-                            console.log('[respuesta 4 ] => ', res.text)//BUG
+                            // console.log('[respuesta 4 ] => ', res.text)//BUG
                             expect(res).to.have.status(201) // CREATED
                             expect(res).to.be.json
                             expect(JSON.parse(res.text))
@@ -87,10 +87,10 @@ describe('API RICO Favorites', ()=>{
                         chai.request(app)
                         .get('/favorites')
                         .end((_,res)=> {
-                            console.log('[respuesta 4 B ] => ', res.text)//BUG
+                            // console.log('[respuesta 4 B ] => ', res.text)//BUG
                             expect(res).to.have.status(200)
                             expect(res).to.be.json
-                            console.log(res.text)
+                            // console.log(res.text)
                             expect(JSON.parse(res.text)).to.eql([
                                 {id: 1, name: 'Ezequiel', favorites: [1,2,3]},
                                 {id: 2, name: 'Javier', favorites: [1,3]},
@@ -108,7 +108,7 @@ describe('API RICO Favorites', ()=>{
                         favorites: [2, 3]
                     })
                     .end((_, res)=>{
-                        console.log('[respuesta 5 ] => ', res.text)//BUG
+                        // console.log('[respuesta 5 ] => ', res.text)//BUG
                         expect(res).to.have.status(201)
                         expect(res).to.be.json
                         expect(JSON.parse(res.text))
@@ -118,7 +118,7 @@ describe('API RICO Favorites', ()=>{
                     chai.request(app)
                     .get('/favorites/2')
                     .end((_,res)=>{
-                        console.log('[respuesta 6 ] => ', res.text)//BUG
+                        // console.log('[respuesta 6 ] => ', res.text)//BUG
                         expect(res).to.have.status(200)
                         expect(res).to.be.json
                         expect(JSON.parse(res.text))
@@ -133,7 +133,7 @@ describe('API RICO Favorites', ()=>{
                         favorites: [912889, 545011]
                     })
                     .end((_, res) => {
-                        console.log('[respuesta 7 ] => ', res.text)//BUG
+                        // console.log('[respuesta 7 ] => ', res.text)//BUG
                     expect(res).to.have.status(404)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -151,7 +151,7 @@ describe('API RICO Favorites', ()=>{
                         nothing: true
                     })
                     .end((_, res) => {
-                    console.log('[respuesta 8 ] => ', res.text)//BUG
+                    // console.log('[respuesta 8 ] => ', res.text)//BUG
                     expect(res).to.have.status(404)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -169,7 +169,7 @@ describe('API RICO Favorites', ()=>{
                     favorites: [2, 1, 3]
                 })
                 .end((_, res) => {
-                console.log('[respuesta 9 ] => ', res.text)//BUG
+                // console.log('[respuesta 9 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)//may fail
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -190,7 +190,7 @@ describe('API RICO Favorites', ()=>{
                         id_restaurant: 1
                     })
                     .end((_, res) => {
-                    console.log('[respuesta 10 ] => ', res.text)//BUG
+                    // console.log('[respuesta 10 ] => ', res.text)//BUG
                     expect(res).to.have.status(201)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -205,7 +205,7 @@ describe('API RICO Favorites', ()=>{
                         id_restaurant: 1
                     })
                     .end((_, res) => {
-                    console.log('[respuesta 11 ] => ', res.text)//BUG
+                    // console.log('[respuesta 11 ] => ', res.text)//BUG
                     expect(res).to.have.status(201)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -215,7 +215,7 @@ describe('API RICO Favorites', ()=>{
                     chai.request(app)
                     .get('/favorites/3')
                     .end((_, res) =>{
-                    console.log('[respuesta 11 B ] => ', res.text)//BUG
+                    // console.log('[respuesta 11 B ] => ', res.text)//BUG
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -233,7 +233,7 @@ describe('API RICO Favorites', ()=>{
                         id_restaurant: 5
                     })
                     .end((_, res) => {
-                        console.log('[respuesta 12 ] => ', res.text)//BUG
+                        // console.log('[respuesta 12 ] => ', res.text)//BUG
                     expect(res).to.have.status(404)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -251,7 +251,7 @@ describe('API RICO Favorites', ()=>{
                         id_restaurant: 6
                     })
                     .end((_, res) => {
-                        console.log('[respuesta 13 ] => ', res.text)//BUG
+                        // console.log('[respuesta 13 ] => ', res.text)//BUG
                         expect(res).to.have.status(404)
                         expect(res).to.be.json
                         expect(JSON.parse(res.text))
