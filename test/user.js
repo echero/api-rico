@@ -21,8 +21,8 @@ describe("API RICO", () => {
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql([
-                    { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]},
-                    { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3]},
+                    { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]},
+                    { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3,2]},
                     { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
                     { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
                     { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []}
@@ -43,7 +43,7 @@ describe("API RICO", () => {
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql(
-                    { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]})
+                  { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]})
             })
         })
 
@@ -61,9 +61,9 @@ describe("API RICO", () => {
         })
 
     describe("POST /user", () => {
-        describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
-            it("No es posible agregar ese Restaurant")
-        })
+        // describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
+        //     it("No es posible agregar ese Restaurant")
+        // })
 
         describe("cuando el usuario no está en el nivel de otro", () => {
             it("crea un usuario", () => {
@@ -97,8 +97,8 @@ describe("API RICO", () => {
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
                       .to.eql([
-                        { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1]},
-                        { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3]},
+                        { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]},
+                        { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [1,3,2]},
                         { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [1,2]},
                         { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
                         { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []},
