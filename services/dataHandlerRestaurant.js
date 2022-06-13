@@ -31,16 +31,18 @@ const DataRestaurants = {
         return Restaurants
     },
     restaurantById : (id) => {
-        const res = undefined
+        const res = {}
         if(typeof(id) === 'number'){
-        if(idAlreadyInUse(id, Restaurants)){res = Restaurants.find()}
+            if(idAlreadyInUse(id, Restaurants)){
+                res = Restaurants.find(e => e.id === id)
+            }
         }
-    return res
+        return res
     },
     addRestaurant : (newRestaurant) => {
         let done
         if(verifierData(newRestaurant)){
-            if(!idAlreadyInUse(newRestaurant.id, Users)) Users.push(newRestaurant)
+            if(!idAlreadyInUse(newRestaurant.id, Restaurants)) Restaurants.push(newRestaurant)
             done = true;
         }else {
             done = false
@@ -51,23 +53,22 @@ const DataRestaurants = {
         //with all the data changed with the exeption of the id
         let done
         if(verifierData(RestaurantModified)){
-            let user = userById(RestaurantModified.id)
-            user.name = RestaurantModified.name
-            user.direction = RestaurantModified.direction
-            user.horario = RestaurantModified.horario
-            user.tipoRestaurante = RestaurantModified.tipoRestaurante
-            user.telefono = RestaurantModified.telefono
+            let restaurant = restaurantById(RestaurantModified.id)
+            restaurant.name = RestaurantModified.name
+            restaurant.direction = RestaurantModified.direction
+            restaurant.horario = RestaurantModified.horario
+            restaurant.tipoRestaurante = RestaurantModified.tipoRestaurante
+            restaurant.telefono = RestaurantModified.telefono
             done = true
         }else{done = false}
         return done
     },
     deleteRestaurant : (id) => {
         const res = undefined
-        if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+        if(typeof(id) === 'number' && idAlreadyInUse(id, Restaurants)){
             res = Restaurants.pop()
         }
         return res
-    },
-
+    }
 }
 module.exports = DataRestaurants;

@@ -7,16 +7,16 @@ const { verifyIdRestaurant } = handlerRestaurant
 // //methods used to help interact with users data
 
 //     //method that verifies that all props are filled with things
-// const verifierData = ({id, name, surname, age, state, favorites}) => {
-//     let verified = false
-//     typeof(id) === 'number' ? verified = true : verified = false
-//     typeof(name) === 'string' ? verified = true : verified = false
-//     typeof(surname) === 'string' ? verified = true : verified = false
-//     typeof(age) === 'number' ? verified = true : verified = false
-//     typeof(state) === 'boolean' ? verified = true : verified = false
-//     typeof(favorites) === 'object' ? verified = true : verified = false
-//     return verified
-// }
+const verifierData = ({id, name, surname, age, state, favorites}) => {
+    let verified = false
+    typeof(id) === 'number' ? verified = true : verified = false
+    typeof(name) === 'string' ? verified = true : verified = false
+    typeof(surname) === 'string' ? verified = true : verified = false
+    typeof(age) === 'number' ? verified = true : verified = false
+    typeof(state) === 'boolean' ? verified = true : verified = false
+    typeof(favorites) === 'object' ? verified = true : verified = false
+    return verified
+}
     //returns true or false depending if the array only includes numbers
     //al pedo
 const verifyDataFav = (arr) => {
@@ -54,7 +54,6 @@ const allUsersFavorites = () => {
         }
         return usersAndFavs
 }
-//hasta aquí
 const addUser = (newUser) => {
     let done
     if(verifierData(newUser)){
@@ -88,37 +87,29 @@ const deleteUser = (id) => {
 }
 
 const addFavoriteToUser = (id, arrayFavs)=> {
-    // let done = false
-    // if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
-    //     if(verifyDataFav(arrayFavs)){
-    //         if(verifyFavAll(arrayFavs)){
-    //             const user = userById(id)
-    //             user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
-    //             done = true
-    //         }
-    //     }
-    // }
-    // return done
-    const user = userById(id)
-    user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
-
-}
-const removeAllFavorites = (id)=>{
     let done = false
-    const user = this.userById(id)
-    if(typeof(user) !== 'undefined'){
-        done = true
-        user.favorites = []
+    if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+        if(verifyDataFav(arrayFavs)){
+            if(verifyFavAll(arrayFavs)){
+                const user = userById(id)
+                user.favorites = common.ignoreDoubleData(user.favorites, arrayFavs)
+                done = true
+            }
+        }
     }
     return done
 }
+
 const removeFavorite = (id, idFav) => {
     let done = false
-    const user = this.userById(id)
-    if(typeof(user) !== 'undefined'){
+    if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
+    const user = userById(id)
         if(verifyIdRestaurant(idFav)){
-            user.favorites.push(idFav)
-            done = true
+            const index = user.favorites.indexOf(idFav)
+            if(index !== -1){
+                user.favorites.splice(index, 1)
+                done = true
+            }
         }
     }
     return done
@@ -134,15 +125,10 @@ const DataUsers = {
     allUsersFavorites,
     addUser,
     modifyUser,
-    // modifyUserName,
-    // modifyUserSurname,
-    // modifyUserAge,
-    // modifyUserState,
     deleteUser,
     addFavoriteToUser,
     verifyFavAll,
     verifyDataFav,
-    removeAllFavorites,
     removeFavorite
 
 }
