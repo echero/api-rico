@@ -28,7 +28,7 @@ module.exports = {
             if(typeof(busqueda) === 'undefined'){
                 users.push(userNew) 
                 res.status(201)
-                res.json(req.params)
+                res.json(userNew)
             }
             else{
                 res.status(404)

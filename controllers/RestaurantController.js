@@ -18,8 +18,10 @@ module.exports = {
     post : (req, res) => {
 
         const { id, name, direction, horario, tipoRestaurante, telefono } = req.body
+
+        const idParse = id
   
-        const restaurant = new Restaurant(parseInt(id), name, direction, horario, tipoRestaurante, telefono)
+        const restaurant = new Restaurant(idParse, name, direction, horario, tipoRestaurante, telefono)
 
         const busqueda = restaurantsData.find(rest => rest.id === restaurant.id)
 
@@ -28,7 +30,7 @@ module.exports = {
             if(typeof(busqueda) === 'undefined'){
                 restaurantsData.push(restaurant) 
                 res.status(201)
-                res.json(req.params)
+                res.json(restaurant)
             }
             else{
                 res.status(404)

@@ -69,7 +69,7 @@ describe("API RICO", () => {
                   .post('/restaurant')
                   .send({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
                   .end((_, res) => {
-                    console.log('crea test',res.text)
+                    // console.log('crea test',res.text)
                     expect(res).to.have.status(201) // CREATED
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
