@@ -13,7 +13,7 @@ module.exports = {
             res.json(user)
         }
         else{
-            res.status(404).end()
+            res.status(404)
             res.json({ message: "there is no user with this id"}).end()
         }
     },
@@ -33,11 +33,12 @@ module.exports = {
             }
             else{
                 res.status(404)
-                res.json({ message: "this user can't me created"}).end()
+                
             }
         } catch(e) {
             res.status(409)
             res.json(userNew)
+            res.json({ message: "this user can't me created"}).end()
         }
     },
     delete : (req, res) => {
@@ -54,7 +55,6 @@ module.exports = {
             }
             else{
                 res.status(404).end()
-                res.json({ message: "this user can't me deleted"}).end()
             }
         } catch(e) {
             res.status(409)
