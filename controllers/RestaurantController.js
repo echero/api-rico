@@ -61,20 +61,19 @@ module.exports = {
             res.json(restaurant)
         }
      },
-     put : (req, res) => {
+     put : async (req, res) => {
 
-        const id = parseInt(req.params.id)
+        const id = Number(req.params.id)
 
         const { name, direction, horario, tipoRestaurante, telefono } = req.body
         
-        const restaurantNew = new Restaurant(id, direction, horario, tipoRestaurante, telefono)
+        const restaurantNew = new User(id, direction, horario, tipoRestaurante, telefono)
 
         const busqueda = restaurantsData.find(rest => rest.id === restaurantNew.id)
 
         if(busqueda){
-
-            const isLargeNumber = (element) => element == busqueda;
             const indice = restaurantsData.findIndex(isLargeNumber)
+            const isLargeNumber = (element) => element == restaurantNew;
 
             restaurantsData[indice].name = name
             restaurantsData[indice].direction = direction

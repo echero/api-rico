@@ -63,20 +63,19 @@ module.exports = {
         }
         
     },
-    put : (req, res) => {
+    put :async (req, res) => {
 
-        const id = parseInt(req.params.id)
+        const id = Number(req.params.id)
 
         const { name, surname, age, state, favorites } = req.body
-
+        
         const userNew = new User(id, name, surname, age, state, favorites)
 
         const busqueda = users.find(user => user.id === userNew.id)
 
         if(busqueda){
-    
-            const isLargeNumber = (element) => element == busqueda;
             const indice = users.findIndex(isLargeNumber)
+            const isLargeNumber = (element) => element == userNew;
 
             users[indice].name = name
             users[indice].surname = surname
