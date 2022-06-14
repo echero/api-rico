@@ -1,23 +1,3 @@
-// const express = require("express"); //server-express
-// const app = express();      //initialize app
-// require('dotenv').config()
-// const port = process.env.PORT || 8080   // establecemos nuestro puerto 
-
-// const userRoute = require("./routes/User");
-// const restaurantRoute = require("./routes/Restaurant");
-// const searchRoute = require("./routes/Search")
-
-// app.use("/user", userRoute);
-
-// app.use("/restaurant", restaurantRoute)
-// // app.use("/restaurant/:id", restaurantRoute)
-
-// app.use("/search", searchRoute)
-
-// app.listen(port, () =>{
-//     console.log("Servidor corriendo en el puerto 3000");
-// });
-
 const port = process.env.PORT || 8080   // establecemos nuestro puerto 
 
 let createError = require('http-errors');
