@@ -11,6 +11,8 @@ const restaurantRoute = require("./routes/Restaurant");
 const searchRoute = require("./routes/Search");
 const favoritesRoute = require("./routes/Favorites");
 const menuRoute = require("./routes/Menu");
+const reservationRoute = require('./routes/Reservation')
+const reviewRoute = require('./routes/Review')
 
 let app = express();
 
@@ -27,7 +29,11 @@ app.use("/search", searchRoute)
 
 app.use("/favorites", favoritesRoute)
 
-app.use("/Menu", menuRoute)
+app.use("/menu", menuRoute)
+
+app.use("/reservation", reservationRoute)
+
+app.use("/review", reviewRoute)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
