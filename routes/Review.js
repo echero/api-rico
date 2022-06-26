@@ -3,11 +3,8 @@ const express = require("express")
 const router = express.Router() 
 
 const controller = require("../controllers/ReviewController");
-//establecemos nuestras rutas
-//prefijos '/' - '/:id' 
- router.get("/", controller.get);
-// router.get("/:id", controller.id);
-// router.post("/:id", controller.post);
-// router.delete("/:id", controller.delete);
+router.get('/restaurant/:id', controller.getByRestaurantId);
+router.get('/user/:id', controller.getByUserId);
+router.post('/', controller.create);
 
 module.exports = router;
