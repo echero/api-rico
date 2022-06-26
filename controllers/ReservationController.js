@@ -13,6 +13,7 @@ module.exports = {
     getRestaurantById: async (req, res) => {
         //probar
         // const restaurant = handlerRestaurant.restaurantById(id);
+        //Trae todas las reservas por id de Restaurant
       const id = Number(req.params.id)
       const reservaPorIdRestaurant = reservationData.filter(reserv => reserv.idRestaurante === id)
       if(reservaPorIdRestaurant){
@@ -43,7 +44,7 @@ module.exports = {
     //no se puede cancelar una reserva el mismo dia de dicha reserva
     const idReserva = Number(req.params.id)
     const reservaPorId = reservationData.find(reserv => reserv.id === idReserva)
-    const date = new Date().getDay()
+    const date = new Date().getDate()
 
     if(reservaPorId.dia !== date){
       const isLargeNumber = (element) => element == reservaPorId;
@@ -64,14 +65,20 @@ module.exports = {
     const reservaPorId = reservationData.find(reserv => reserv.id === idReserva)
     
     if(reservaPorId){
-      const isLargeNumber = (element) => element == reservaPorId;
-      const indice = reservationData.findIndex(isLargeNumber)
+      if(Object.entries(req.body).length === 2){
+        const isLargeNumber = (element) => element == reservaPorId;
+        const indice = reservationData.findIndex(isLargeNumber)
 
-      reservationData[indice].dia = dia
-      reservationData[indice].hora = hora
+        reservationData[indice].dia = dia
+        reservationData[indice].hora = hora
 
-      res.status(200)
-      res.json(reservationData[indice]).end()
+        res.status(200)
+        res.json(reservationData[indice]).end()
+      }else{
+        res.status(404)
+        res.json({ message: "No se puedo actualizar el dia y la hora de la reserva por tener otro parametro a modificar"}).end()
+      }
+      
     }else{
       res.status(404)
       res.json({ message: "No se puedo actualizar el dia y la hora de esa reserva"}).end()

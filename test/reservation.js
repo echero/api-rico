@@ -46,10 +46,10 @@ describe("API RICO", () => {
             })
         })
 
-    //     // it("da error con un user que no existe", async () => {
+    //     // it("da error con una reserva que no existe ese id", async () => {
 
     //     //     chai.request(index)
-    //     //       .get('/user/6')
+    //     //       .get('/reservation/6')
     //     //       .end((_, res) => {
     //     //         expect(res).to.have.status(404)
     //     //         expect(res).to.be.json
@@ -59,86 +59,113 @@ describe("API RICO", () => {
     //     //   })
         })
 
-    // describe("POST /user", () => {
-    //     // describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
-    //     //     it("No es posible agregar ese Restaurant")
-    //     // })
+    describe("POST /user", () => {
+        // describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
+        //     it("No es posible agregar ese Restaurant")
+        // })
 
-    //     describe("cuando el usuario no está en el nivel de otro", () => {
-    //         it("crea un usuario", () => {
-    //           chai.request(index)
-    //             .post('/user')
-    //             .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-    //             .end((_, res) => {
-    //               expect(res).to.have.status(201) // CREATED
-    //               expect(res).to.be.json
-    //               expect(JSON.parse(res.text))
-    //                 .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-    //             })
-    //         })
+        describe("crear una nueva reserva", () => {
+            it("crea una reserva", () => {
+              chai.request(index)
+                .post('/reservation')
+                .send({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
+                .end((_, res) => {
+                  expect(res).to.have.status(200) // CREATED
+                  expect(res).to.be.json
+                  expect(JSON.parse(res.text))
+                    .to.eql({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
+                })
+            // })
 
-    //         it("muestra un usuario recién creado", () => {
-    //             chai.request(index)
-    //               .post('/user')
-    //               .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-    //               .end((_, res) => {
-    //                 expect(res).to.have.status(201) // CREATED
-    //                 expect(res).to.be.json
-    //                 expect(JSON.parse(res.text))
-    //                   .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-    //               })
+            // it("muestra un usuario recién creado", () => {
+            //     chai.request(index)
+            //       .post('/user')
+            //       .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+            //       .end((_, res) => {
+            //         expect(res).to.have.status(201) // CREATED
+            //         expect(res).to.be.json
+            //         expect(JSON.parse(res.text))
+            //           .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
+            //       })
                   
-    //             chai.request(index)
-    //               .get('/user')
-    //               .end((_, res) => {
-    //                 // console.log('respuesta 2: ',res.text)
-    //                 expect(res).to.have.status(200)
-    //                 expect(res).to.be.json
-    //                 expect(JSON.parse(res.text))
-    //                   .to.eql([
-    //                     { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]},
-    //                     { id: 2, name: "Javier", surname: "Cheron", age : 33, state : true, favorites: [3,2]},
-    //                     { id: 3, name: "Matias", surname: "Ramirez", age : 64, state : true, favorites: [2]},
-    //                     { id: 4, name: "Adam", surname: "coca", age : 24, state : true, favorites: [2,3]},
-    //                     { id: 5, name: "noname", surname: "nosurname", age : 100, state : false, favorites: []},
-    //                     { id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []}
-    //                   ])
-    //                 })
-    //             })          
-    //         }) 
-    //   })
+                chai.request(index)
+                  .get('/reservation')
+                  .end((_, res) => {
+                    // console.log('respuesta 2: ',res.text)
+                    expect(res).to.have.status(200)
+                    expect(res).to.be.json
+                    expect(JSON.parse(res.text))
+                      .to.eql([
+                        {id: 1, idUser: 1, idRestaurante: 1, dia: 20, hora: 18},
+                        {id: 2, idUser: 2, idRestaurante: 2, dia: 25, hora: 19},
+                        {id: 3, idUser: 3, idRestaurante: 3, dia: 30, hora: 21},
+                        {id: 4, idUser: 4, idRestaurante: 1, dia: 30, hora: 20},
+                        {id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22}
+                      ])
+                    })
+                })          
+            }) 
+      })
     
 
-    // describe("DELETE /user", () => {
-    //     it("Borra un restaurant por id de la lista de restaurantes", () => {
+    describe("DELETE /reservation", () => {
+        it("Borra una reserva por id de la lista de reservas, siempre y cuando no sea del mismo dia", () => {
 
-    //       chai.request(index)
-    //       .delete('/user/1')
-    //       .end((_, res) =>{
-    //           expect(res).to.have.status(200)
-    //           expect(res).to.be.json
-    //           expect(JSON.parse(res.text))
-    //           .to.eql(
-    //             { id: 1, name: "Ezequiel", surname: "Cheron", age : 34, state : true, favorites: [1,2,3]})
-    //       })
-    //     })
-    // }) 
+          chai.request(index)
+          .delete('/reservation/1')
+          .end((_, res) =>{
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                {id: 1, idUser: 1, idRestaurante: 1, dia: 20, hora: 18},)
+          })
+        })
 
-    // describe("PUT /user", async () => {
-    //     it("Modifica un restaurant por id de la lista de restaurant", () => {
+        it("Tira error cuando se quiere eliminar una reserva que es del mismo dia", () => {
 
-    //       chai.request(index)
-    //       .put('/user/6')
-    //       .send({ name: "Chero", surname: "Chero", age : 34, state : true, favorites: [1,2]})
-    //       .end((_, res) =>{
-    //         // console.log('respuesta 22: ',res.text)
-    //           expect(res).to.have.status(200)
-    //           expect(res).to.be.json
-    //           expect(JSON.parse(res.text))
-    //           .to.eql(
-    //             { id: 6, name: "Chero", surname: "Chero", age : 34, state : true, favorites: [1,2]})
-    //       })
+            chai.request(index)
+            .delete('/reservation/5')
+            .end((_, res) =>{
+                expect(res).to.have.status(400)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql({ message: "No puedes cancelar el mismo día de la reserva" }) 
+            })
+          })
+    }) 
+
+    describe("PUT /reservation", async () => {
+        it("Modifica la hora y la fecha de una reserva por id de la lista de reservas", () => {
+
+          chai.request(index)
+          .put('/reservation/5')
+          .send({dia: 20, hora: 18})
+          .end((_, res) =>{
+            // console.log('respuesta 22: ',res.text)
+              expect(res).to.have.status(200)
+              expect(res).to.be.json
+              expect(JSON.parse(res.text))
+              .to.eql(
+                {id: 5, idUser: 5, idRestaurante: 1, dia: 20, hora: 18})
+          })
       
-    //   })
-    // })
+      })
+
+      it("No puede modificar la reserva dado que tiene un parametro mas al de dia y hora", () => {
+
+        chai.request(index)
+        .put('/reservation/5')
+        .send({idRestaurante: 2,dia: 20, hora: 18})
+        .end((_, res) =>{
+          // console.log('respuesta 22: ',res.text)
+            expect(res).to.have.status(404)
+            expect(res).to.be.json
+            expect(JSON.parse(res.text))
+            .to.eql(
+                {message: "No se puedo actualizar el dia y la hora de la reserva por tener otro parametro a modificar"})
+        })
+    
+    })
+    })
 })
