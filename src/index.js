@@ -13,7 +13,7 @@ const restaurantsRoutes = require('./routes/restaurants');
 // const searchRoute = require('./routes/Search');
 // const favoritesRoute = require('./routes/Favorites');
 // const menuRoute = require('./routes/Menu');
-// const reservationRoute = require('./routes/Reservation');
+const reservationRoutes = require('./routes/Reservation');
 const reviewsRoutes = require('./routes/reviews');
 const authRoutes = require('./routes/auth');
 
@@ -36,7 +36,7 @@ app.use('/restaurants', restaurantsRoutes);
 
 // app.use('/menu', menuRoute);
 
-// app.use('/reservation', reservationRoute);
+app.use('/reservation', reservationRoutes);
 
 app.use('/reviews', reviewsRoutes);
 

@@ -1,10 +1,12 @@
-const reservationData = require('../data/Reservation');
+const { Reservation } = require('../models/reservation.model');
 const handlerRestaurant = require('../services/dataHandlerRestaurant');
 
 module.exports = {
   get: (req, res) => {
-    res.status(200);
-    res.json(reservationData);
+    //res.status(200);
+   // res.json(reservationData);
+    const reservations =  Reservation.find();
+    return res.status(200).json(reservations);
   },
   getRestaurantById: (req, res) => {
     const { id } = req.params;
@@ -36,7 +38,12 @@ module.exports = {
     const { id } = req.params;
     //no se puede cancelar una reserva el mismo dia de dicha reserva
     const deletedReservation = await Reservation.findByIdAndDelete(id);
-    return res.status(200).json(deletedReservation);
+    const date = Date.now
+    if(deletedReservation.date !== date){
+      return res.status(200).json(deletedReservation);
+    }
+    return res.status(400).json({message: "No puedes cancelar el mismo día de la reserva"})
+    
   },
   update: async (req, res) => {
     //solo se puede actualizar el dia y la hora
@@ -50,7 +57,3 @@ module.exports = {
     return res.status(200).json(updatedReservation);
   },
 };
-// get
-// get
-// post
-// delete
