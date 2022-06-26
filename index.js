@@ -1,3 +1,4 @@
+require('dotenv').config();
 const port = process.env.PORT || 8080   // establecemos nuestro puerto 
 
 let createError = require('http-errors');
@@ -21,6 +22,8 @@ app.use(express.urlencoded({ extended: true }));//cambie algo puede romper
 app.use(express.json());
 app.use(cookieParser());
 
+app.use('/auth', authRoutes);
+
 app.use("/user", userRoute);
 
 app.use("/restaurant", restaurantRoute)
@@ -34,6 +37,8 @@ app.use("/menu", menuRoute)
 app.use("/reservation", reservationRoute)
 
 app.use("/review", reviewRoute)
+
+app.get('/', (req, res) => res.json({ message: 'Rico API' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
