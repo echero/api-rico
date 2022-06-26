@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));//cambie algo puede romper
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/auth', authRoutes);
+// app.use('/auth', authRoutes);
 
 app.use("/user", userRoute);
 
