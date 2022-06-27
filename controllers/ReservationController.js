@@ -5,15 +5,10 @@ const dataHandlerReview = require('../services/dataHandlerReview')
 
 module.exports = {
     get : (req, res) => {
-        //probar si funciona
-        // return res.status(200).json(reservations);
-        // const reservations = reservationData.find();
         res.status(200)
         res.json(reservationData)
     },
     getRestaurantById: async (req, res) => {
-        //probar
-        // const restaurant = handlerRestaurant.restaurantById(id);
         //Trae todas las reservas por id de Restaurant
       const id = Number(req.params.id)
       const reservaPorIdRestaurant = reservationData.filter(reserv => reserv.idRestaurante === id)
@@ -40,8 +35,6 @@ module.exports = {
         }
     },
     remove: (req, res) => {
-    //probar si funciona
-    //const deletedReservation = await Reservation.findByIdAndDelete(parseInt(id));
     //no se puede cancelar una reserva el mismo dia de dicha reserva
     const idReserva = Number(req.params.id)
     const reservaPorId = reservationData.find(reserv => reserv.id === idReserva)
@@ -86,6 +79,7 @@ module.exports = {
     }
   },
   reviews : (req, res) => {
+    //Trae todas las reviews del restaurante particular
     const id = Number(req.params.id)
     let reviews = dataHandlerReview.reviewsByRestaurant(id)
     if(reviews.length !== 0){

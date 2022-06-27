@@ -5,7 +5,6 @@ const Users = require('../data/User')
 // const numRegex = /^\d+$/;
 
 module.exports = {
-    //get
     //trae todos los usuarios con sus nombres y favoritos
     get : (req, res) => {
         res.status(200)
