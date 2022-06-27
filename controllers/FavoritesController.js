@@ -38,6 +38,8 @@ module.exports = {
                 //trae error si no existe ese usuario
                 res.status(404)
                 res.json({ message: "There are no users with that id"})
+            }else{
+                res.json({ message: "idk"})
             }
         }
     },
@@ -64,6 +66,9 @@ module.exports = {
                     res.status(404)
                     res.json({message: "the restaurants weren't found, some or all of the id's provided may not be from restaurants in the database"})
                 }
+        }else{
+            res.status(404)
+            res.json({message : 'There were no valid data in the request'})
         }
     },
     //delete
@@ -91,6 +96,9 @@ module.exports = {
                     res.json({ message: "the favorite restaurant wasn't found"})
                 }
             }
+        }else{
+            res.status(404)
+            res.json({message: 'no data provided'})
         }
     }
 

@@ -7,11 +7,11 @@ const app = require('../index')
 chai.use(chaiHttp)
 
 describe('API RICO Menu', ()=>{
-    describe('GET /Menu', ()=>{
+    describe('GET /menu', ()=>{
         //done [✔]
         it('trae todos los menus con sus platos', async ()=>{
             chai.request(app)
-            .get('/Menu')
+            .get('/menu')
             .end((_,res)=> {
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
@@ -25,11 +25,11 @@ describe('API RICO Menu', ()=>{
             })
         })
     })
-    describe('GET /Menu/:id', ()=>{
+    describe('GET /menu/:id', ()=>{
         //done [✔]
         it('trae un menu segun id', ()=>{
             chai.request(app)
-            .get('/Menu/1')
+            .get('/menu/1')
             .end((_, res) =>{
                 console.log('[respuesta 1 ] => ', res.text)//BUG
                 // expect(res).to.have.status(200)
@@ -41,7 +41,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si no encuentra ese menu', ()=>{
             chai.request(app)
-            .get('/Menu/9988989')
+            .get('/menu/9988989')
             .end((_, res) =>{
                 console.log('[respuesta 2 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -53,7 +53,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae los platos de un menu segun id', ()=>{
             chai.request(app)
-            .get('/Menu/1/plates')
+            .get('/menu/1/plates')
             .end((_, res) =>{
                 console.log('[respuesta 3 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
@@ -70,7 +70,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si no tiene platos en el menu', ()=>{
             chai.request(app)
-            .get('/Menu/4/plates')
+            .get('/menu/4/plates')
             .end((_, res) =>{
                 console.log('[respuesta 4 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -83,7 +83,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae el plato segun el id del menu y del plato', ()=>{
             chai.request(app)
-            .get('/Menu/1/plate/1')
+            .get('/menu/1/plate/1')
             .end((_, res) =>{
                 console.log('[respuesta 5 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
@@ -95,7 +95,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si no encuentra ese menu (al buscar un plato)', ()=>{
             chai.request(app)
-            .get('/Menu/9988989/plate/1')
+            .get('/menu/9988989/plate/1')
             .end((_, res) =>{
                 console.log('[respuesta 6 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -107,7 +107,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si no encuentra el plato', ()=>{
             chai.request(app)
-            .get('/Menu/1/plate/9899')
+            .get('/menu/1/plate/9899')
             .end((_, res) =>{
                 console.log('[respuesta 7 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -117,11 +117,11 @@ describe('API RICO Menu', ()=>{
             })
         })
     })
-    describe('POST /Menu/:id', ()=>{
+    describe('POST /menu/:id', ()=>{
         //done [✔]
         it('agrega el menu', ()=>{
             chai.request(app)
-            .post('/Menu')
+            .post('/menu')
             .send(
                 {"id":5,"idRestaurant":1,"plates":[
                     {"id":1,"name":"chori-pan","price":200},
@@ -138,7 +138,7 @@ describe('API RICO Menu', ()=>{
             })
 
             chai.request(app)
-            .get('/Menu/5')
+            .get('/menu/5')
             .end((_, res) =>{
                 console.log('[respuesta 8 B ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
@@ -155,7 +155,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si el id del menu no es valida', ()=>{
             chai.request(app)
-            .post('/Menu')
+            .post('/menu')
             .send(
                 {"id":3,"idRestaurant":1,"plates":[
                     {"id":1,"name":"chori-pan","price":200},
@@ -174,7 +174,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si el id del restaurant no es valida', ()=>{
             chai.request(app)
-            .post('/Menu')
+            .post('/menu')
             .send(
                 {"id":6,"idRestaurant":7,"plates":[
                     {"id":1,"name":"chori-pan","price":200},
@@ -193,7 +193,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si los datos del menu nuevo no están bien', ()=>{
             chai.request(app)
-            .post('/Menu')
+            .post('/menu')
             .send(
                 {"id":7,"idRestaurant":1,"plates":[
                     {"id":1,"price":200},
@@ -214,7 +214,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('agrega el plato al menu', ()=>{
             chai.request(app)
-            .post('/Menu/1/plate')
+            .post('/menu/1/plate')
             .send({"id":9,"name":"fugazzetta","price":900})
             .end((_, res) =>{
                 console.log('[respuesta 12 ] => ', res.text)//BUG
@@ -227,7 +227,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si no encuentra el menu del plato a agregar', ()=>{
             chai.request(app)
-            .post('/Menu/88/plate')
+            .post('/menu/88/plate')
             .send({"id":9,"name":"fugazzetta","price":900})
             .end((_, res) =>{
                 console.log('[respuesta 13 ] => ', res.text)//BUG
@@ -240,7 +240,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si los datos del plato nuevo no está bien', ()=>{
             chai.request(app)
-            .post('/Menu/1/plate')
+            .post('/menu/1/plate')
             .send({"id":9,"price":900})
             .end((_, res) =>{
                 console.log('[respuesta 14 ] => ', res.text)//BUG
@@ -252,11 +252,11 @@ describe('API RICO Menu', ()=>{
         })
     })
     
-    describe('DELETE /Menu/:id', ()=>{
+    describe('DELETE /menu/:id', ()=>{
         //done [✔]
         it('elimina el menu', async ()=>{
             chai.request(app)
-            .delete('/Menu/1')
+            .delete('/menu/1')
             .end((_, res) =>{
                 console.log('[respuesta 23 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
@@ -265,7 +265,7 @@ describe('API RICO Menu', ()=>{
                 .to.eql('menu 1 deleted')
             })
             chai.request(app)
-            .get('/Menu/1')
+            .get('/menu/1')
             .end((_, res) =>{
                 console.log('[respuesta 23 B ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -277,7 +277,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('trae error si el id del menu no es valida', ()=>{
             chai.request(app)
-            .delete('/Menu/5675')
+            .delete('/menu/5675')
             .end((_, res) =>{
                 console.log('[respuesta 24 ] => ', res.text)//BUG
                 expect(res).to.have.status(404)
@@ -289,7 +289,7 @@ describe('API RICO Menu', ()=>{
         //done [✔]
         it('elimina el plato del menu', async ()=>{
             chai.request(app)
-            .delete('/Menu/2/plate/5')
+            .delete('/menu/2/plate/5')
             .end((_, res) =>{
                 console.log('[respuesta 25 ] => ', res.text)//BUG
                 expect(res).to.have.status(201)
@@ -298,7 +298,7 @@ describe('API RICO Menu', ()=>{
                 .to.eql('plate 5 deleted from the menu 2')
             })
             chai.request(app)
-            .get('/Menu/2/plate/5')
+            .get('/menu/2/plate/5')
             .end((_, res) =>{
                 console.log('[respuesta 25 B ] => ', res.text)//BUG
                 expect(res).to.have.status(404)

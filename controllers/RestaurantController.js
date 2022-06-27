@@ -1,5 +1,6 @@
 const Restaurant = require('../models/restaurant')
 const restaurantsData = require('../data/Restaurant')
+const dataHandlerReview = require('../services/dataHandlerReview')
 
 module.exports = {
     get : (req, res) => {
@@ -13,6 +14,14 @@ module.exports = {
         }
         else{
             res.status(404).end()
+        }
+    },
+    reviews : (req, res) => {
+        const id = Number(req.params.id)
+        const restaurant = restaurantsData.find(restaurant => restaurant.id === id)
+        if(restaurant){
+            res.status(200)
+            res.json(dataHandlerReview.reviewsByRestaurant(restaurant.id))
         }
     },
     post : (req, res) => {

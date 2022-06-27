@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const users = require('../data/User')
+const dataHandlerReview = require('../services/dataHandlerReview') 
 
 module.exports = {
     get : (req, res) => {
@@ -91,5 +92,16 @@ module.exports = {
             res.json({ message: "this user can't me modified"}).end()
         }
         
+    },
+    reviews : (req, res) => {
+        const id = Number(req.params.id)
+        let reviews = dataHandlerReview.reviewsByUser(id)
+        if(reviews.length !== 0){
+            res.status(200)
+            res.json(reviews)
+        }else{
+            res.status(404)
+            res.json({message: "There are no reviews by this user"})
+        }
     }
 }
