@@ -1,6 +1,10 @@
 const Restaurant = require('../models/restaurant')
 const restaurantsData = require('../data/Restaurant')
 const dataHandlerReview = require('../services/dataHandlerReview')
+const dataHandlerMenu = require('../services/dataHandlerMenu')
+const dataHandlerRestaurant = require('../services/dataHandlerRestaurant')
+const { restaurantById } = dataHandlerRestaurant
+
 
 module.exports = {
     get : (req, res) => {
@@ -18,10 +22,36 @@ module.exports = {
     },
     reviews : (req, res) => {
         const id = Number(req.params.id)
-        const restaurant = restaurantsData.find(restaurant => restaurant.id === id)
-        if(restaurant){
-            res.status(200)
-            res.json(dataHandlerReview.reviewsByRestaurant(restaurant.id))
+        const restaurant = restaurantById(id)
+        let reviews = dataHandlerReview.reviewsByRestaurant(restaurant.id)
+        if(Object.entries(restaurant).length !== 0){
+            if(reviews.length !== 0){
+                res.status(200)
+                res.json(reviews)
+            }else {
+                res.status(404)
+                res.json({message: "There are no reviews for this restaurant"})
+            }
+        }else{
+            res.status(404)
+            res.json({message: "There are no restaurants with that id"})
+        }
+    },
+    menus : (req, res) => {
+        const id = Number(req.params.id)
+        let restaurant = restaurantById(id)
+        let menus = dataHandlerMenu.menusByRestaurant(restaurant.id)
+        if(Object.entries(restaurant).length !== 0){
+            if(menus.length !== 0){
+                res.status(200)
+                res.json(menus)
+            }else {
+                res.status(404)
+                res.json({message: "There are no menus for this restaurant"})
+            }
+        }else{
+            res.status(404)
+            res.json({message: "There are no restaurants with that id"})
         }
     },
     post : (req, res) => {

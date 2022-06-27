@@ -117,6 +117,42 @@ describe('API RICO Menu', ()=>{
             })
         })
     })
+
+    describe('GET /restaurant/:id/menus', ()=>{
+        //done [✔]
+        it('trae todos los menues de un restaurant segun id', () => {
+            chai.request(app)
+            .get('/restaurant/2/menus')
+            .end((_, res) =>{
+                console.log('[respuesta A ] => ', res.text)//BUG
+                expect(res).to.have.status(200)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql([
+                    {"id":2,"idRestaurant":2,"plates":[
+                        {"id":5,"name":"Pizza Napolitana","price":480},
+                        {"id":6,"name":"Pizza de mozzarella","price":700},
+                        {"id":7,"name":"Pizza Hawaiana","price":500},
+                        {"id":8,"name":"Pizza de Pepperoni","price":300},
+                        {"id":9,"name":"Pizza Prosciutto","price":660}
+                    ]}
+                ])
+            })
+        })
+        //done [✔]
+        it('trae error por no encontrar menues para este restarant', async () => {
+            chai.request(app)
+            .get('/restaurant/4/menus')
+            .end((_, res) =>{
+                console.log('[respuesta B ] => ', res.text)//BUG
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql({message: "There are no menus for this restaurant"})
+            })
+        })
+    })
+
     describe('POST /menu/:id', ()=>{
         //done [✔]
         it('agrega el menu', ()=>{
@@ -307,6 +343,52 @@ describe('API RICO Menu', ()=>{
                 .to.eql({message :"there are no plates with that id"})
             })
         })
+        //done [✔]
+        it('trae error si no puede eliminar el plato', async ()=>{
+            chai.request(app)
+            .delete('/menu/2/plate/333')
+            .end((_, res) =>{
+                console.log('[respuesta 26 ] => ', res.text)//BUG
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql('error')
+            })
+        })
+        //done [✔]
+        it('elimina todos los platos del menu', async ()=>{
+            chai.request(app)
+            .delete('/menu/2/plates')
+            .end((_, res) =>{
+                console.log('[respuesta 27 ] => ', res.text)//BUG
+                expect(res).to.have.status(201)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql('plates deleted from menu 2')
+            })
+            chai.request(app)
+            .get('/menu/2/plates')
+            .end((_, res) =>{
+                console.log('[respuesta 27 B ] => ', res.text)//BUG
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql({message :"there are no plates in this menu"})
+            })
+        })
+        //done [✔]
+        it('trae error si no puede eliminar todos los platos', async ()=>{
+            chai.request(app)
+            .delete('/menu/8989/plates')
+            .end((_, res) =>{
+                console.log('[respuesta 28 ] => ', res.text)//BUG
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql('error')
+            })
+        })
+
     })
 })
 

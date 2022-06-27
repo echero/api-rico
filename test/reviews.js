@@ -3,7 +3,7 @@ const chaiHttp = require('chai-http')
 const { describe } = require('mocha')
 const { expect } = chai
 const app = require('../index')
-//done [✔]
+
 chai.use(chaiHttp)
 
 describe('API RICO Reviews', ()=>{
@@ -31,7 +31,7 @@ describe('API RICO Reviews', ()=>{
     })
 
     describe('GET /review/:id', ()=>{
-        //done
+        //done [✔]
         it('trae una review segun id', () => {
             chai.request(app)
             .get('/review/1')
@@ -43,7 +43,7 @@ describe('API RICO Reviews', ()=>{
                 .to.eql({id: 1, idUser: 1, idRestaurant: 2, score: 4, comment:"Muy rico"})
             })
         })
-        //done
+        //done [✔]
         it('trae error si no tiene una review con ese id', () => {
             chai.request(app)
             .get('/review/9000')
@@ -56,9 +56,9 @@ describe('API RICO Reviews', ()=>{
             })
         })
     })
-//
+
     describe('GET /user/:id/reviews', ()=>{
-        //done
+        //done [✔]
         it('trae todas las review de un usuario segun id', () => {
             chai.request(app)
             .get('/user/1/reviews')
@@ -73,7 +73,7 @@ describe('API RICO Reviews', ()=>{
                 ])
             })
         })
-        //done
+        //done [✔]
         it('trae error por no encontrar reviews de ese usuario', () => {
             chai.request(app)
             .get('/user/5/reviews')
@@ -87,8 +87,8 @@ describe('API RICO Reviews', ()=>{
         })
     })
     describe('GET /restaurant/:id/reviews', ()=>{
-        //done
-        it.only('trae todas las review de un restaurant segun id', () => {
+        //done [✔]
+        it('trae todas las review de un restaurant segun id', () => {
             chai.request(app)
             .get('/restaurant/1/reviews')
             .end((_, res) =>{
@@ -102,8 +102,8 @@ describe('API RICO Reviews', ()=>{
                 ])
             })
         })
-        // not done
-        it.only('trae error por no encontrar reviews para este restarant', async () => {
+        //done [✔]
+        it('trae error por no encontrar reviews para este restarant', async () => {
             chai.request(app)
             .get('/restaurant/4/reviews')
             .end((_, res) =>{
@@ -115,9 +115,9 @@ describe('API RICO Reviews', ()=>{
             })
         })
     })
-//
+
     describe('POST /review', ()=>{
-        //done
+        //done [✔]
         it('crea una review con datos validos', async () => {
             chai.request(app)
             .post('/review')
@@ -151,7 +151,7 @@ describe('API RICO Reviews', ()=>{
                 ])
             })
         })
-        //done
+        //done [✔]
         it('da error por datos invalidos', () => {
             chai.request(app)
             .post('/review')
@@ -170,7 +170,7 @@ describe('API RICO Reviews', ()=>{
     })
 
     describe('DELETE /review/:id', ()=>{
-        //done
+        //done [✔]
         it('elimina review por id', ()=>{
             chai.request(app)
             .delete('/review/1')
@@ -193,7 +193,7 @@ describe('API RICO Reviews', ()=>{
                 .to.eql({ message: "There are no reviews with that id"})          
             })
         })
-        //done
+        //done [✔]
         it('da error por no encontrar tal review', () => {
             chai.request(app)
             .delete('/review/6588')
