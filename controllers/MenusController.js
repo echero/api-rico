@@ -170,7 +170,7 @@ module.exports = {
     //done [✔]
     deletePlates : (req, res) => {
         let id = parseInt(req.params.id)
-        let r = handlerMenu.deletePlates(id)
+        let r = handlerMenu.deleteAllPlates(id)
         if(r){
             res.status(201)
             res.json(`plates deleted from menu ${id}`)

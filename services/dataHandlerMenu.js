@@ -1,5 +1,4 @@
 const Menus = require('../data/Menus')
-const plate = require('../models/plate')
 const common = require('./common')
 const {idAlreadyInUse} = common
 const handlerRestaurant = require('./dataHandlerRestaurant')
@@ -144,6 +143,14 @@ const modifyPlate = (id, plateModified) => {
     return done
 }
 
+const menusByRestaurant = (id_restaurant) => {
+    let res = []
+    if(handlerRestaurant.verifyIdRestaurant(id_restaurant)){
+        res = Menus.filter(e => e.idRestaurant === id_restaurant)
+    }
+    return res
+}
+
 const DataMenus = {
     allMenus : () => {
         return Menus
@@ -159,7 +166,8 @@ const DataMenus = {
     deletePlate,
     deleteAllPlates,
     //
-    verifierDataMenu
+    verifierDataMenu,
+    menusByRestaurant
 }
 
 module.exports = DataMenus;

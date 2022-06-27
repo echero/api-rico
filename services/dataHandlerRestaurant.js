@@ -25,7 +25,7 @@ const verifyIdRestaurant = (id) => {
     return verified
 }
 const restaurantById = (id) => {
-    const res = {}
+    let res = {}
     if(typeof(id) === 'number'){
         if(idAlreadyInUse(id, Restaurants)){
             res = Restaurants.find(e => e.id === id)
@@ -67,7 +67,7 @@ const DataRestaurants = {
     deleteRestaurant : (id) => {
         let done = false
         if(typeof(id) === 'number' && idAlreadyInUse(id, Restaurants)){
-            const index = Restaurants.indexOf(id)
+            const index = Restaurants.indexOf(restaurantById(id))
             if(index !== -1){
                 Restaurants.splice(index, 1)
                 done = true

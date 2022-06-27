@@ -17,13 +17,15 @@ describe("API RICO", () => {
             chai.request(index)
             .get('/restaurant')
             .end((_, res) =>{
+                console.log(res.text)
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql([
                     { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232 },
                     { id: 2, name: "Güerrín", direction: "Corrientes 1368", horario: "9am-23pm", tipoRestaurante: "Pizza", telefono: 8565446 },
-                    { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 }
+                    { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 },
+                    { id: 4, name :"Paleta", direction :"Belgrano 1800", horario :"11am-1am", tipoRestaurante :"parrilla", telefono :448778}
                 ])
             })
         })
@@ -67,25 +69,25 @@ describe("API RICO", () => {
               it("crea un restaurant", () => {
                 chai.request(index)
                   .post('/restaurant')
-                  .send({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
+                  .send({ id: 5, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
                   .end((_, res) => {
                     // console.log('crea test',res.text)
                     expect(res).to.have.status(201) // CREATED
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
-                      .to.eql({ id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
+                      .to.eql({ id: 5, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 })
                   })
               })
               
               it("muestra un restaurant recién creado", () => {
                 chai.request(index)
                   .post('/restaurant')
-                  .send({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
+                  .send({id: 6, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   .end((_, res) => {
                     expect(res).to.have.status(201) // CREATED
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
-                      .to.eql({id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
+                      .to.eql({id: 6, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 })
                   })
 
                   chai.request(index)
@@ -98,8 +100,9 @@ describe("API RICO", () => {
                         { id: 1, name: "Avenida Rivadavia 3439", direction: "El Pobre Luis", horario: "08am-22pm", tipoRestaurante: "Parrilla", telefono: 3232232 },
                         { id: 2, name: "Güerrín", direction: "Corrientes 1368", horario: "9am-23pm", tipoRestaurante: "Pizza", telefono: 8565446 },
                         { id: 3, name: "La Pescadorita", direction: "Humboldt 1905", horario: "9am-23pm", tipoRestaurante: "Mariscos", telefono: 798778 },
-                        { id: 4, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 },
-                        { id: 5, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 }
+                        { id: 4, name :"Paleta", direction :"Belgrano 1800", horario :"11am-1am", tipoRestaurante :"parrilla", telefono :448778},
+                        { id: 5, name: "Nuevo Restaurant La Vaca", direction: "Av. Carabobo 1000", horario: "9am-23pm", tipoRestaurante: "Parrilla", telefono: 47890987 },
+                        { id: 6, name: "Nuevo Restaurant", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 47988090 }
                       ])
                   })
                   })
@@ -127,15 +130,14 @@ describe("API RICO", () => {
         it("Modifica un restaurant por id de la lista de restaurant", () => {
 
           chai.request(index)
-          .put('/restaurant/5')
-          .send({ name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
+          .put('/restaurant/6')
+        .send({ name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
           .end((_, res) =>{
-            // console.log('respuesta 22: ',res.text)
               expect(res).to.have.status(200)
               expect(res).to.be.json
               expect(JSON.parse(res.text))
-              .to.eql(
-                { id: 5, name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
+              .to.eql({
+                id: 6, name: "Modificado", direction: "Av. Carabobo 2000", horario: "9am-23pm", tipoRestaurante: "Teco", telefono: 1539227719})
           })
         })
     })

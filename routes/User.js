@@ -7,6 +7,7 @@ const controller = require("../controllers/UserController");
 //prefijos '/' - '/:id' 
 router.get("/", controller.get)
 router.get("/:id", controller.id)
+router.get("/:id/reviews", controller.reviews);
 router.post("/", controller.post)
 router.delete("/:id", controller.delete)
 router.put("/:id", controller.put)

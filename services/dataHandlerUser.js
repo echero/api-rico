@@ -79,11 +79,15 @@ const modifyUser = (userModified) => {
     return done
 }
 const deleteUser = (id) => {
-    const res = undefined
+    let done = false
     if(typeof(id) === 'number' && idAlreadyInUse(id, Users)){
-        res = Users.pop()
+        const index = Users.indexOf(userById(id))
+        if(index !== -1){
+            Users.splice(index, 1)
+            done = true
+        }
     }
-    return res
+    return done
 }
 
 const addFavoriteToUser = (id, arrayFavs)=> {
