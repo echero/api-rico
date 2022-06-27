@@ -130,7 +130,6 @@ describe("API RICO", () => {
         it("Modifica la hora y la fecha de una reserva por id de la lista de reservas", () => {
 
           chai.request(index)
-          console.log('[respuesta 5 ] => ',res.text)//BUG
           .put('/reservation/5')
           .send({dia: 20, hora: 18})
           .end((_, res) =>{
@@ -147,7 +146,6 @@ describe("API RICO", () => {
       it("No puede modificar la reserva dado que tiene un parametro mas al de dia y hora", () => {
 
         chai.request(index)
-        console.log('[respuesta 6 ] => ',res.text)//BUG
         .put('/reservation/5')
         .send({idRestaurante: 2,dia: 20, hora: 18})
         .end((_, res) =>{
