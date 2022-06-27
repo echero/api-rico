@@ -29,19 +29,20 @@
 5. Los usuarios registrados pueden hacer una reserva en cualquier restaurante disponible
 6. Los restaurantes pueden especificar los días en los cuales se pueden hacer reservas
 7. No se puede cancelar una reserva el mismo día
-8. Solo se puede modificar el día y la hora de una reserva
+8. Se puede modificar el día y la hora de una reserva
 9. Los usuarios pueden dejar reseñas a cada restaurante visitado
-10. No se pueden actualizar ni eliminar reseñas
-11. Los restaurantes pueden guardar la carta de comidas y bebidas (menu)
-12. Cada menú puede tener una cantidad ilimitada de platos
+10. No se pueden actualizar las reseñas
+11. Se pueden eliminar las reseñas
+12. Los restaurantes pueden guardar la carta de comidas y bebidas (menu)
+13. Cada menú puede tener una cantidad ilimitada de platos
 ---
 
 #### Declaración de rutas
 - Home: /
 - Usuario: 
     - /user/id  .........................  (Get)
-    - /user/id/delete  .........................  (Delete)
-    - /user/id/put  .........................  (Put)
+    - /user/id  .........................  (Delete)
+    - /user/id  .........................  (Put)
 - Favoritos: 
     - /favorites  .........................  (Get)
     - /favorite/id  .........................  (Get)
