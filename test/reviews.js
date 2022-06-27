@@ -90,15 +90,15 @@ describe('API RICO Reviews', ()=>{
         //done [✔]
         it('trae todas las review de un restaurant segun id', () => {
             chai.request(app)
-            .get('/restaurant/1/reviews')
+            .get('/restaurant/3/reviews')
             .end((_, res) =>{
                 console.log('[respuesta 4 ] => ', res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql([
-                    {id: 6, idUser: 1, idRestaurant: 1, score: 5, comment: "increible!"},
-                    {id: 7, idUser: 2, idRestaurant: 1, score: 2, comment: "horrible!"}
+                    {id: 3, idUser: 3, idRestaurant: 3, score: 3, comment:"Estuvo bien pero no volveria"},
+                    {id: 4, idUser: 3, idRestaurant: 3, score: 3, comment: "podria ser mejor"}
                 ])
             })
         })

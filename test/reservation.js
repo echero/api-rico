@@ -17,6 +17,7 @@ describe("API RICO", () => {
             chai.request(index)
             .get('/reservation')
             .end((_, res) =>{
+              console.log('[respuesta 0 ] => ',res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -38,6 +39,7 @@ describe("API RICO", () => {
             chai.request(index)
             .get('/reservation/1')
             .end((_, res) =>{
+              console.log('[respuesta 1 ] => ',res.text)//BUG
                 expect(res).to.have.status(200)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
@@ -64,9 +66,10 @@ describe("API RICO", () => {
         describe("crear una nueva reserva", () => {
             it("crea una reserva", () => {
               chai.request(index)
-                .post('/reservation')
-                .send({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
-                .end((_, res) => {
+              .post('/reservation')
+              .send({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
+              .end((_, res) => {
+                  console.log('[respuesta 2 ] => ',res.text)//BUG
                   expect(res).to.have.status(200) // CREATED
                   expect(res).to.be.json
                   expect(JSON.parse(res.text))
@@ -77,6 +80,7 @@ describe("API RICO", () => {
                   .get('/reservation')
                   .end((_, res) => {
                     // console.log('respuesta 2: ',res.text)
+                    console.log('[respuesta 2b ] => ',res.text)//BUG
                     expect(res).to.have.status(200)
                     expect(res).to.be.json
                     expect(JSON.parse(res.text))
@@ -99,6 +103,7 @@ describe("API RICO", () => {
           chai.request(index)
           .delete('/reservation/1')
           .end((_, res) =>{
+            console.log('[respuesta 3 ] => ',res.text)//BUG
               expect(res).to.have.status(200)
               expect(res).to.be.json
               expect(JSON.parse(res.text))
@@ -112,18 +117,20 @@ describe("API RICO", () => {
             chai.request(index)
             .delete('/reservation/5')
             .end((_, res) =>{
+              console.log('[respuesta 4 ] => ',res.text)//BUG
                 expect(res).to.have.status(400)
                 expect(res).to.be.json
                 expect(JSON.parse(res.text))
                 .to.eql({ message: "No puedes cancelar el mismo día de la reserva" }) 
             })
-          })
+        })
     }) 
 
     describe("PUT /reservation", async () => {
         it("Modifica la hora y la fecha de una reserva por id de la lista de reservas", () => {
 
           chai.request(index)
+          console.log('[respuesta 5 ] => ',res.text)//BUG
           .put('/reservation/5')
           .send({dia: 20, hora: 18})
           .end((_, res) =>{
@@ -140,6 +147,7 @@ describe("API RICO", () => {
       it("No puede modificar la reserva dado que tiene un parametro mas al de dia y hora", () => {
 
         chai.request(index)
+        console.log('[respuesta 6 ] => ',res.text)//BUG
         .put('/reservation/5')
         .send({idRestaurante: 2,dia: 20, hora: 18})
         .end((_, res) =>{
