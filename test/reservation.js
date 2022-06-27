@@ -60,9 +60,6 @@ describe("API RICO", () => {
         })
 
     describe("POST /user", () => {
-        // describe("Cuando el usaurio a crear esta en el mismo nivel que otro", () =>{
-        //     it("No es posible agregar ese Restaurant")
-        // })
 
         describe("crear una nueva reserva", () => {
             it("crea una reserva", () => {
@@ -75,19 +72,7 @@ describe("API RICO", () => {
                   expect(JSON.parse(res.text))
                     .to.eql({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
                 })
-            // })
 
-            // it("muestra un usuario recién creado", () => {
-            //     chai.request(index)
-            //       .post('/user')
-            //       .send({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-            //       .end((_, res) => {
-            //         expect(res).to.have.status(201) // CREATED
-            //         expect(res).to.be.json
-            //         expect(JSON.parse(res.text))
-            //           .to.eql({ id: 6, name: "noname new", surname: "nosurname new", age : 65, state : true, favorites: []})
-            //       })
-                  
                 chai.request(index)
                   .get('/reservation')
                   .end((_, res) => {

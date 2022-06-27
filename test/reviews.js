@@ -59,7 +59,7 @@ describe('API RICO Reviews', ()=>{
 //
     describe('GET /user/:id/reviews', ()=>{
         //done
-        it.only('trae todas las review de un usuario segun id', () => {
+        it('trae todas las review de un usuario segun id', () => {
             chai.request(app)
             .get('/user/1/reviews')
             .end((_, res) =>{
@@ -88,7 +88,7 @@ describe('API RICO Reviews', ()=>{
     })
     describe('GET /restaurant/:id/reviews', ()=>{
         //done
-        it('trae todas las review de un restaurant segun id', () => {
+        it.only('trae todas las review de un restaurant segun id', () => {
             chai.request(app)
             .get('/restaurant/1/reviews')
             .end((_, res) =>{
@@ -103,17 +103,17 @@ describe('API RICO Reviews', ()=>{
             })
         })
         // not done
-        // it('trae error por no encontrar reviews para este restarant', () => {
-        //     chai.request(app)
-        //     .get('/restaurant/4/reviews')
-        //     .end((_, res) =>{
-        //         console.log('[respuesta 4.2 ] => ', res.text)//BUG
-        //         expect(res).to.have.status(404)
-        //         expect(res).to.be.json
-        //         expect(JSON.parse(res.text))
-        //         .to.eql({message: "There are no reviews for this restaurant"})
-        //     })
-        // })
+        it.only('trae error por no encontrar reviews para este restarant', async () => {
+            chai.request(app)
+            .get('/restaurant/4/reviews')
+            .end((_, res) =>{
+                console.log('[respuesta 4.2 ] => ', res.text)//BUG
+                expect(res).to.have.status(404)
+                expect(res).to.be.json
+                expect(JSON.parse(res.text))
+                .to.eql({message: "There are no reviews for this restaurant"})
+            })
+        })
     })
 //
     describe('POST /review', ()=>{

@@ -1,6 +1,7 @@
 const Reservation = require('../models/reservation')
 const reservationData = require('../data/Reservation')
 const handlerRestaurant = require('../services/dataHandlerRestaurant');
+const dataHandlerReview = require('../services/dataHandlerReview')
 
 module.exports = {
     get : (req, res) => {
@@ -84,4 +85,15 @@ module.exports = {
       res.json({ message: "No se puedo actualizar el dia y la hora de esa reserva"}).end()
     }
   },
+  reviews : (req, res) => {
+    const id = Number(req.params.id)
+    let reviews = dataHandlerReview.reviewsByRestaurant(id)
+    if(reviews.length !== 0){
+        res.status(200)
+        res.json(reviews)
+    }else{
+        res.status(404)
+        res.json({message: "There are no reviews for this restaurant"})
+    }
+}
 }
