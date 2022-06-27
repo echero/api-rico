@@ -68,12 +68,12 @@ describe("API RICO", () => {
             it("crea una reserva", () => {
               chai.request(index)
                 .post('/reservation')
-                .send({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
+                .send({id: 5, idUser: 5, idRestaurante: 1, dia: 27, hora: 22})
                 .end((_, res) => {
                   expect(res).to.have.status(200) // CREATED
                   expect(res).to.be.json
                   expect(JSON.parse(res.text))
-                    .to.eql({id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22})
+                    .to.eql({id: 5, idUser: 5, idRestaurante: 1, dia: 27, hora: 22})
                 })
             // })
 
@@ -100,7 +100,7 @@ describe("API RICO", () => {
                         {id: 2, idUser: 2, idRestaurante: 2, dia: 25, hora: 19},
                         {id: 3, idUser: 3, idRestaurante: 3, dia: 30, hora: 21},
                         {id: 4, idUser: 4, idRestaurante: 1, dia: 30, hora: 20},
-                        {id: 5, idUser: 5, idRestaurante: 1, dia: 26, hora: 22}
+                        {id: 5, idUser: 5, idRestaurante: 1, dia: 27, hora: 22}
                       ])
                     })
                 })          
