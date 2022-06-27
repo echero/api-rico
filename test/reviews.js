@@ -3,6 +3,8 @@ const chaiHttp = require('chai-http')
 const { describe } = require('mocha')
 const { expect } = chai
 const app = require('../index')
+const review = require('../models/review')
+const dataHandlerReview = require('../services/dataHandlerReview')
 
 chai.use(chaiHttp)
 
@@ -206,5 +208,10 @@ describe('API RICO Reviews', ()=>{
             })  
         })
     })
-
+    describe("Data correcta", () => {
+        it("No lanza excepcion", () => {
+            const review = new review(8, 5, 4, 6, "Estaba rico")
+            expect(() => dataHandlerReview.addReview(review).not.to.throw({ message: "Data correcta"}))
+        })
+    })
 })
