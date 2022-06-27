@@ -4,10 +4,10 @@ const router = express.Router()
 
 const controller = require("../controllers/ReservationController");
 //establecemos nuestras rutas
-//prefijos '/' - '/:id' 
-router.get("/", controller.get); //reservas por id del restaurante
-//router.get("/:id", controller.get);  // id del restaurante y el dia para que traiga todas las reservas de ese dia
-//router.post("/:id", controller.post); //crear una reserva pasandole el modelo de reserva
-//router.delete("/:id", controller.delete); //cancelar la reserva…
-
+ 
+router.get("/", controller.get);
+router.get("/:id", controller.getRestaurantById); //reservas por id del restaurante
+router.post("/", controller.create); //crear una reserva pasandole el modelo de reserva
+router.delete("/:id", controller.remove); //cancelar la reserva…
+router.put("/:id", controller.update) // actualizar el dia y la hora
 module.exports = router;
