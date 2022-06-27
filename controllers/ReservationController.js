@@ -1,7 +1,5 @@
 const Reservation = require('../models/reservation')
 const reservationData = require('../data/Reservation')
-const handlerRestaurant = require('../services/dataHandlerRestaurant');
-const dataHandlerReview = require('../services/dataHandlerReview')
 
 module.exports = {
     get : (req, res) => {
