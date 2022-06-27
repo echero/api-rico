@@ -1,9 +1,8 @@
-archivo de texto donde se incluya una posible planificación de la implementación del proyecto;
-
 Planificación de la implementación del proyecto:
 *
-Es un sistema de busqueda para darle visibilidad a pequeños emprendimientos que a través de redes sociales 
-no han alcanzado la visibilidad que su producto amerita.
+Es un sistema que permite realizar reservas a restaurantes asi como dejar reseñas y puntuacion a los ya visitados, 
+tiene la funcionalidad de buscar restaurantes bajo diferentes criterios de busqueda asi como tambien 
+guardar dichos restaurantes en una categoria de favoritos.
   Puede ser usado para todo tipo de comercios, sus cimientos se encuentran en ayudar a pequenios emprendimientos a mostrar 
   los productos que ofrecen al mundo y asi poder conectar con personas que quieran o necesiten los productos ofrecidos
 *
@@ -15,6 +14,8 @@ no han alcanzado la visibilidad que su producto amerita.
 - Controller RestaurantMenu   (Fernando)
 - Controller Favorite         (Fernando)
 - Controller Search           (Elyelin)
+- Controller Review           (Todos)
+- Controller Reservation      (Todos)
 
 # Tests       
 - UserTest                  (Chero)
@@ -22,6 +23,8 @@ no han alcanzado la visibilidad que su producto amerita.
 - RestaurantMenuTest        (Fernando)
 - FavoriteTest              (Fernando)
 - SearchTest                (Elyelin)
+- Review                    (Fernando)
+- Reservation               (Chero)
 
 # Rutas
 - User                      (Chero)
@@ -29,5 +32,7 @@ no han alcanzado la visibilidad que su producto amerita.
 - Restaurant menu           (Fernando)
 - Favorite                  (Fernando)
 - Search                    (Elyelin)
+- Review                    (Elyelin)
+- Reservation               (Elyelin)
 
 # Bugs
